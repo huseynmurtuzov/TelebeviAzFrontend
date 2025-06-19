@@ -1,4 +1,4 @@
-import "./why-telebevi.css"
+import "../assets/styles/why-telebevi.css"
 
 export default function WhyTelebevi() {
   return (

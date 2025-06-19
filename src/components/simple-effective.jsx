@@ -1,5 +1,5 @@
 import { Search, Users, Home } from "lucide-react"
-import "./simple-effective.css"
+import "../assets/styles/simple-effective.css"
 
 export default function SimpleEffective() {
   const steps = [

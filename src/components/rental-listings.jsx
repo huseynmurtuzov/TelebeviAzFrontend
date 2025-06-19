@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Filters from "./filters"
 import PropertyCard from "./property-card"
-import "./rental-listings.css"
+import "../assets/styles/rental-listings.css"
 import NavigationSearch from '../components/navigation-search'
 import Footer from "./footer"
 

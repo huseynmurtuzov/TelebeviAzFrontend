@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import "./rental-detail.css"
+import "../assets/styles/rental-detail.css"
 import Navigation from "./navigation"
 import Footer from "./footer"
 

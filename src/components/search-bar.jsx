@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import "./search-bar.css"
+import "../assets/styles/search-bar.css"
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("")

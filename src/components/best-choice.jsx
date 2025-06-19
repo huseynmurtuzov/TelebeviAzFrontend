@@ -1,5 +1,5 @@
 import { Home, Heart, Users } from "lucide-react"
-import "./best-choice.css"
+import "../assets/styles/best-choice.css"
 
 export default function BestChoice() {
   const features = [

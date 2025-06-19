@@ -1,4 +1,4 @@
-import "./how-it-works.css"
+import "../assets/styles/how-it-works.css"
 
 export default function HowItWorks() {
   return (

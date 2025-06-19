@@ -1,4 +1,4 @@
-import "./property-card.css"
+import "../assets/styles/property-card.css"
 
 export default function PropertyCard({ property }) {
   const { title, bedrooms, bathrooms, sqft, price, image, priceType = "month" } = property

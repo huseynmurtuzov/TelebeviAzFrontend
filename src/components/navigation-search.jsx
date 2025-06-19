@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import SearchBar from "./search-bar"
-import "./navigation.css"
+import "../assets/styles/navigation.css"
 import logo from '../assets/logo.png'
 
 export default function NavigationSearch() {
@@ -40,7 +40,7 @@ export default function NavigationSearch() {
                 <span><img src={logo} className="logo_itself" alt="" /></span> 
               </a>
               <div className="nav-links">
-                <a href="#" className="nav-link">
+                <a href="/search" className="nav-link">
                   Ev elanları
                 </a>
                 <a href="#" className="nav-link">
@@ -58,8 +58,8 @@ export default function NavigationSearch() {
           <SearchBar />
         </div>
             <div style={{display:'flex',columnGap:"1rem"}}>
-              <a className="cta-button">Sign In</a>
-              <a className="cta-button">Sign Up</a>
+              <a className="cta-button" href="/login">Sign In</a>
+              <a className="cta-button" href="/register">Sign Up</a>
             </div>
           </div>
         </nav>

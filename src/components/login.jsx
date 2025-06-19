@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import "./login.css"
+import "../assets/styles/login.css"
 import Navigation from "./navigation"
 import Footer from "./footer"
 

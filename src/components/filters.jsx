@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import "./filters.css"
+import "../assets/styles/filters.css"
 
 export default function Filters() {
   const [selectedRooms, setSelectedRooms] = useState(null)

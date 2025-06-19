@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import "./register.css"
+import "../assets/styles/register.css"
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(1)
