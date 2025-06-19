@@ -11,6 +11,8 @@
   import RentalListings from "./components/rental-listings"
 import Login from "./components/login"
 import Register from "./components/register"
+import RentalDetail from "./components/rental-detail"
+import Profile from "./components/profile"
 
   export default function App() {
     return (
@@ -21,6 +23,8 @@ import Register from "./components/register"
           <Route path={"/search"} element={<RentalListings/>}/>
           <Route path={"/login"} element={<Login/>}/>
           <Route path={"/register"} element={<Register/>}/>
+          <Route path={"/rent-details/:id"} element={<RentalDetail/>}/>
+          <Route path={"/profile"} element={<Profile/>}/>
         </Routes>
         </BrowserRouter>
       </div>
