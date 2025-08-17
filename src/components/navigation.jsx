@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom"
-import "../assets/styles/navigation.css"
-import logo from '../assets/logo.png'
-import { useState,useEffect } from "react"
+"use client"
+
+import { useState, useEffect } from "react"
+import logo from "../assets/logo.png"
+
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,12 +33,19 @@ export default function Navigation() {
       document.body.classList.remove("navbar-fixed")
     }
   }, [])
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
   return (
     <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="nav-left">
           <a href="/" className="logo">
-            <span><img src={logo} className="logo_itself" alt="" /></span> 
+            <span>
+              <img src={logo} className="logo_itself" alt="" />
+            </span>
           </a>
           <div className="nav-links">
             <a href="#" className="nav-link">
@@ -53,11 +62,51 @@ export default function Navigation() {
             </a>
           </div>
         </div>
-        <div style={{display:'flex',columnGap:"1rem"}}>
-          <a className="cta-button" href="/login">Sign In</a>
-          <a className="cta-button" href="/register">Sign Up</a>
+
+        <div className="nav-right">
+          <div className="desktop-buttons">
+            <a className="cta-button" href="/login">
+              Sign In
+            </a>
+            <a className="cta-button" href="/register">
+              Sign Up
+            </a>
+          </div>
+
+          <button className="mobile-menu-button" onClick={toggleMobileMenu} aria-label="Toggle menu">
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+          </button>
         </div>
       </div>
+
+      <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-links">
+          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Ev elanları
+          </a>
+          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Yataqxanalar
+          </a>
+          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Ev yoldaşı
+          </a>
+          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Dəstək
+          </a>
+        </div>
+        <div className="mobile-menu-buttons">
+          <a className="mobile-cta-button" href="/login" onClick={() => setIsMobileMenuOpen(false)}>
+            Sign In
+          </a>
+          <a className="mobile-cta-button" href="/register" onClick={() => setIsMobileMenuOpen(false)}>
+            Sign Up
+          </a>
+        </div>
+      </div>
+
+      {isMobileMenuOpen && <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>}
     </nav>
   )
 }

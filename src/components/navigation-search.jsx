@@ -57,10 +57,10 @@ export default function NavigationSearch() {
             <div className="nav-center">
           <SearchBar />
         </div>
-            <div style={{display:'flex',columnGap:"1rem"}}>
+            {/* <div style={{display:'flex',columnGap:"1rem"}}>
               <a className="cta-button" href="/login">Sign In</a>
               <a className="cta-button" href="/register">Sign Up</a>
-            </div>
+            </div> */}
           </div>
         </nav>
   )

@@ -26,12 +26,12 @@ export default function Filters() {
 
   return (
     <div className="filters">
-      <h2 className="filters-title">Filters</h2>
+      <h2 className="filters-title">Filtrlər</h2>
 
       <div className="filter-section">
-        <h3 className="filter-label">Location</h3>
+        <h3 className="filter-label">Məkan</h3>
         <select className="location-select">
-          <option value="">Select</option>
+          <option value="">Seç</option>
           <option value="downtown">Downtown</option>
           <option value="campus">Near Campus</option>
           <option value="suburbs">Suburbs</option>
@@ -39,8 +39,8 @@ export default function Filters() {
       </div>
 
       <div className="filter-section">
-        <h3 className="filter-label">Price Range</h3>
-        <p className="price-label">Price per month</p>
+        <h3 className="filter-label">Qiymət aralığı</h3>
+        <p className="price-label">Aylıq kirayə qiyməti</p>
         <div className="price-range-container">
           <input
             type="range"

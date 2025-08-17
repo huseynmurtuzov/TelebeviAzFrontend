@@ -13,11 +13,16 @@ import Login from "./components/login"
 import Register from "./components/register"
 import RentalDetail from "./components/rental-detail"
 import Profile from "./components/profile"
+import VerificationCode from "./components/VerificationCode"
+import { NotificationProvider } from "./components/context/NotificationContext"
+import GlobalStatus from "./components/context/GlobalStatus"
 
   export default function App() {
     return (
       <div>
         <BrowserRouter>
+        <NotificationProvider>
+          <GlobalStatus/>
         <Routes>
           <Route path={"/"} element={<Homepage/>}/>
           <Route path={"/search"} element={<RentalListings/>}/>
@@ -25,7 +30,10 @@ import Profile from "./components/profile"
           <Route path={"/register"} element={<Register/>}/>
           <Route path={"/rent-details/:id"} element={<RentalDetail/>}/>
           <Route path={"/profile"} element={<Profile/>}/>
+          <Route path={"/verifyEmail"} element={<VerificationCode/>}/>
         </Routes>
+        </NotificationProvider>
+        
         </BrowserRouter>
       </div>
     )
