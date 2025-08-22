@@ -39,12 +39,12 @@ export default function NavigationSearch() {
               <a href="/" className="logo">
                 <span><img src={logo} className="logo_itself" alt="" /></span> 
               </a>
-              <div className="nav-links">
-                <a href="/search" className="nav-link">
+              {/* <div className="nav-links">
+                <a href="/listings" className="nav-link">
                   Ev elanları
                 </a>
-                <a href="#" className="nav-link">
-                  Yataqxanalar
+                <a href="#howitworks" className="nav-link">
+                  Necə işləyir
                 </a>
                 <a href="#" className="nav-link">
                   Ev yoldaşı
@@ -52,10 +52,12 @@ export default function NavigationSearch() {
                 <a href="#" className="nav-link">
                   Dəstək
                 </a>
-              </div>
+              </div> */}
             </div>
             <div className="nav-center">
-          <SearchBar />
+          <a className="yeni-elan-button" href="/createListing">
+            + Yeni Elan
+          </a>
         </div>
             {/* <div style={{display:'flex',columnGap:"1rem"}}>
               <a className="cta-button" href="/login">Sign In</a>

@@ -129,3 +129,18 @@ body.navbar-fixed {
     gap: 10px;
   }
 }
+
+.yeni-elan-button {
+  background-color: #23b455;      /* Təzə, canlı yaşıl */
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(35, 180, 85, 0.08);
+  letter-spacing: 0.5px;
+}
+

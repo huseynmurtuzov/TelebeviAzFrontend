@@ -1,57 +1,167 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../assets/styles/profile.css"
 import Navigation from "./navigation"
 import Footer from "./footer"
+import { useNotification } from "./context/NotificationContext"
+import NavigationAfterLogin from "./NavigationAfterLogin"
+import {jwtDecode} from 'jwt-decode'
+import { useNavigate } from "react-router-dom"
+import api from "../api"
+import UserListingCard from "../components/UserListingCard"
+import UserFavoriteListingCard from "./UserFavoriteListingCard"
 
 export default function Profile() {
-  const [userProfile, setUserProfile] = useState({
-    name: "Aysun Aliyeva",
-    university: "Baku State University",
-    email: "aysun.aliyeva@gmail.com",
-    profileImage: "/placeholder.svg?height=120&width=120",
-  })
+  const [userProfile, setUserProfile] = useState({})
+  const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn } = useNotification();
+  const [userListings, setUserListings] = useState([])
+  const [userFavoritedListings, setUserFavoritedListings] = useState([])
+  const navigate = useNavigate();
+  if(userProfile == {}){
+    setLoading(true)
+  }
+  
+  const token = localStorage.getItem("accessToken");
+  let userId;
+  if(token){
+    const decoded = jwtDecode(token);
+    userId = decoded.id || decoded.sub || decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+  }
+
+  const getUserInfoFunction = async () => {
+    return await api.get(`/User/${userId}`);
+  }
+
+  const getUserListings = async () => {
+    return await api.get(`/Listing/getUserListings/${userId}`)
+  }
+
+  const getUsersFavoriteListings = async() => {
+    return await api.get(`/FavoriteListing/${parseInt(userId)}`)
+  }
+
+  const handleEditListing = (listing) => {
+  // məsələn, redaktə səhifəsinə yönləndir:
+  navigate(`/editListing/${listing.id}`)
+};
+
+const handleDeleteListing = async (listing) => {
+  // Təsdiq soruş, sonra silmək üçün API çağırışı et və listi  yenilə:
+  if(window.confirm("Elanı silmək istədiyinizə əminsiniz?")){
+    try {
+      await api.delete(`/Listing/${listing.id}`);
+      setUserListings(prev => prev.filter(l => l.id !== listing.id));
+      showInfo("Elan silindi!");
+    } catch (err) {
+      showError("Silinmə zamanı xəta baş verdi!");
+    }
+  }
+};
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+    setLoading(true);
+    try {
+      const response = await getUserInfoFunction();
+      setUserProfile(response.data);
+      console.log(response)
+    } catch (err) {
+      if (err.response && err.response.data) {
+        showError(err.response.data.message || "Xəta baş verdi!");
+        console.log(err.response.data);
+      } else {
+        // showError("Xəta baş verdi!");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchUserInfo();
+  },[])
+
+  useEffect(() => {
+    const fetchUserListings = async () => {
+      setLoading(true);
+      try {
+        const response = await getUserListings();
+        setUserListings(response.data);
+        console.log(response.data)
+      } catch (err) {
+        if (err.response && err.response.data) {
+          showError(err.response.data.message || "Xəta baş verdi!");
+        } else {
+          // showError("Xəta baş verdi!");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUserListings()
+  },[userProfile])
+
+  useEffect(() => {
+    const fetchUsersFavoriteListings = async () => {
+      setLoading(true);
+      try {
+        const response = await getUsersFavoriteListings();
+        setUserFavoritedListings(response.data);
+        console.log(response.data)
+      } catch (err) {
+        if (err.response && err.response.data) {
+          showError(err.response.data.message || "Xəta baş verdi!");
+        } else {
+          // showError("Xəta baş verdi!");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsersFavoriteListings()
+  },[userProfile])
+
 
   const handleEditProfile = () => {
     console.log("Edit profile clicked")
+    navigate("/editProfile")
     // Handle edit profile logic
   }
 
   const handleCreateListing = () => {
-    console.log("Create listing clicked")
+    navigate("/createListing")
     // Handle create listing logic
   }
 
   const handleExploreListing = () => {
-    console.log("Explore listings clicked")
+    navigate("/listings")
     // Handle explore listings logic
   }
 
   return (
     <div>
-      <Navigation/>
+      {isLoggedIn ? <NavigationAfterLogin/> : <Navigation/>}
       <div className="profile-page">
       <div className="profile-container">
         {/* Profile Header */}
         <div className="profile-header">
-          <div className="profile-avatar">
+          {/* <div className="profile-avatar">
             <img src={userProfile.profileImage || "/placeholder.svg"} alt={userProfile.name} className="avatar-image" />
-          </div>
+          </div> */}
           <div className="profile-info">
-            <h1 className="profile-name">{userProfile.name}</h1>
-            <p className="profile-university">{userProfile.university}</p>
+            <h1 className="profile-name">{userProfile.name + " " + userProfile.surName}</h1>
+            {/* <p className="profile-university">{userProfile.university}</p> */}
             <p className="profile-email">{userProfile.email}</p>
+            
           </div>
           <button className="edit-profile-button" onClick={handleEditProfile}>
-            Edit Profile
+            Profili editlə
           </button>
         </div>
 
         {/* My Listings Section */}
         <div className="profile-section">
-          <h2 className="section-title">My Listings</h2>
-          <div className="empty-state">
+          <h2 className="section-title">Mənim elanlarım</h2>
+          {userListings.length == 0 && (<div className="empty-state">
             <div className="empty-state-illustration">
               <svg className="illustration-svg" viewBox="0 0 200 150" fill="none">
                 {/* Laptop base */}
@@ -68,53 +178,75 @@ export default function Profile() {
                 <path d="M60 75 L72 70 L84 65 L96 60 L108 55 L120 50" stroke="#ef4444" strokeWidth="2" fill="none" />
               </svg>
             </div>
-            <h3 className="empty-state-title">No Listings Yet</h3>
+            <h3 className="empty-state-title">Hələlik elan yoxdur</h3>
             <p className="empty-state-description">
-              You haven't listed any properties yet. Start listing your property to find potential roommates.
+              Siz hələ elan paylaşmamısınız. Yeni elan paylaşmaq istəyərsiniz?
             </p>
             <button className="action-button primary" onClick={handleCreateListing}>
-              Create Listing
+              Yeni elan yarat
             </button>
-          </div>
+          </div>)}
+          {userListings.length != 0 && (
+            <div className="listing-card-wrapper">
+              {userListings.map((listing,idx) => {
+                          return  <UserListingCard 
+                            key={listing.id || idx}
+                  listing={listing}
+                  onEdit={() => handleEditListing(listing)}
+                  onDelete={() => handleDeleteListing(listing)}
+                            />
+                          })}
+            </div>
+            
+            
+          ) }
         </div>
 
-        {/* Saved Properties Section */}
+        {/* Saved Properties Section
         <div className="profile-section">
-          <h2 className="section-title">Saved Properties</h2>
-          <div className="empty-state">
+          <h2 className="section-title">Sevimli elanlar</h2>
+          {userFavoritedListings.length == 0 && (
+            <div className="empty-state">
             <div className="empty-state-illustration">
               <svg className="illustration-svg" viewBox="0 0 200 150" fill="none">
-                {/* Ground */}
                 <rect x="0" y="120" width="200" height="30" fill="#10b981" />
-                {/* Buildings */}
                 <rect x="40" y="80" width="20" height="40" fill="#059669" />
                 <rect x="70" y="70" width="20" height="50" fill="#059669" />
                 <rect x="100" y="60" width="20" height="60" fill="#059669" />
                 <rect x="130" y="50" width="20" height="70" fill="#059669" />
                 <rect x="160" y="40" width="20" height="80" fill="#059669" />
-                {/* Windows */}
                 <rect x="44" y="85" width="3" height="3" fill="#34d399" />
                 <rect x="53" y="85" width="3" height="3" fill="#34d399" />
                 <rect x="74" y="75" width="3" height="3" fill="#34d399" />
                 <rect x="83" y="75" width="3" height="3" fill="#34d399" />
                 <rect x="104" y="65" width="3" height="3" fill="#34d399" />
                 <rect x="113" y="65" width="3" height="3" fill="#34d399" />
-                {/* Trees */}
                 <circle cx="20" cy="110" r="8" fill="#22c55e" />
                 <rect x="18" y="110" width="4" height="10" fill="#059669" />
                 <circle cx="185" cy="110" r="8" fill="#22c55e" />
                 <rect x="183" y="110" width="4" height="10" fill="#059669" />
               </svg>
             </div>
-            <h3 className="empty-state-title">No Saved Properties</h3>
+            <h3 className="empty-state-title">Sevimli elan yoxdur</h3>
             <p className="empty-state-description">
-              You haven't saved any properties yet. Explore listings and save properties you're interested in.
+              Heç bir sevimli elan yoxdur. Saytdan yeni maraqlı elanlar kəşf edin.
             </p>
             <button className="action-button secondary" onClick={handleExploreListing}>
-              Explore Listings
+              Elanları axtar
             </button>
           </div>
-        </div>
+          )}
+          {userFavoritedListings.length != 0 && (
+            <div className="listing-card-wrapper">
+              {userFavoritedListings.map((listing,idx) => {
+                          return  <UserFavoriteListingCard 
+                            key={listing.id || idx}
+                            listing={listing}
+                            />
+                          })}
+            </div>
+          )}
+        </div> */}
       </div>
     </div>
     <Footer/>

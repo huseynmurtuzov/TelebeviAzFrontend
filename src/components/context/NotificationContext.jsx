@@ -6,7 +6,9 @@ export const NotificationProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [info, setInfo] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("accessToken"))
+  const [listings, setListings] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
 
   // useEffect(() => {
   //   if(localStorage.getItem("accessToken")){
@@ -25,7 +27,7 @@ const showInfo = (msg) => {
   setInfo(msg);
 };
   return (
-    <NotificationContext.Provider value={{ isLoading, setLoading, error, setError, info, setInfo,isLoggedIn,setIsLoggedIn,showError,showInfo }}>
+    <NotificationContext.Provider value={{ isLoading, setLoading, error, setError, info, setInfo,isLoggedIn,setIsLoggedIn,showError,showInfo,listings,setListings,currentPage,setCurrentPage }}>
       {children}
     </NotificationContext.Provider>
   );

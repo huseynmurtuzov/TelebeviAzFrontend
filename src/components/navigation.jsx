@@ -48,11 +48,11 @@ export default function Navigation() {
             </span>
           </a>
           <div className="nav-links">
-            <a href="#" className="nav-link">
+            <a href="/listings" className="nav-link">
               Ev elanları
             </a>
-            <a href="#" className="nav-link">
-              Yataqxanalar
+            <a href="#howitworks" className="nav-link">
+              Necə işləyir
             </a>
             <a href="#" className="nav-link">
               Ev yoldaşı
@@ -66,10 +66,10 @@ export default function Navigation() {
         <div className="nav-right">
           <div className="desktop-buttons">
             <a className="cta-button" href="/login">
-              Sign In
+              Login
             </a>
             <a className="cta-button" href="/register">
-              Sign Up
+              Register
             </a>
           </div>
 
@@ -83,25 +83,19 @@ export default function Navigation() {
 
       <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="mobile-menu-links">
-          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="/listings" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
             Ev elanları
           </a>
-          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
-            Yataqxanalar
-          </a>
-          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
-            Ev yoldaşı
-          </a>
-          <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
-            Dəstək
+          <a href="#howitworks" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Necə işləyir
           </a>
         </div>
         <div className="mobile-menu-buttons">
           <a className="mobile-cta-button" href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-            Sign In
+            Login
           </a>
           <a className="mobile-cta-button" href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-            Sign Up
+            Register
           </a>
         </div>
       </div>

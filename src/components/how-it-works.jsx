@@ -19,19 +19,19 @@ const HowItWorks = () => {
       title: "Qoşul",
       description:
         "Seçdiyiniz elana əlaqə saxlayın və ya ev yoldaşı axtarışında iştirak edin. Profil yaradın və təhlükəsiz ünsiyyət qurun.",
-      details: ["Profil yaradın", "Şəxsi məlumatları təsdiqləyin", "Ev yoldaşı tapın", "Mesajlaşma sistemi"],
+      details: ["Profil yaradın", "Şəxsi məlumatları təsdiqləyin", "Kirayə ev axtarın", "Ev yoldaşı axtarın"],
     },
     {
       icon: "🏡",
       title: "Yaşa",
       description:
         "Yeni evinizə köçün və rahat tələbə həyatının keyfini çıxarın. Həmyaşıdlarınızla tanış olun və yeni dostluqlar qurun.",
-      details: ["Müqavilə imzalayın", "Köçmə prosesi", "Ev yoldaşları ilə tanışlıq", "24/7 dəstək xidməti"],
+      details: ["Müqavilə imzalayın", "Köçmə prosesi", "Ev yoldaşları ilə tanışlıq", "Rahat kommunikasiya"],
     },
   ]
 
   return (
-    <section className="how-it-works">
+    <section className="how-it-works" id="howitworks">
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Necə işləyir?</h2>
@@ -60,20 +60,20 @@ const HowItWorks = () => {
                 </ul>
               </div>
               {index < steps.length - 1 && (
-                <div className="step-connector">
+                <div className="step-connector" >
                   <div className="connector-line"></div>
                   <div className="connector-arrow">→</div>
                 </div>
               )}
-            </div>
+            </div >
           ))}
         </div>
 
-        <div className="demo-section">
-          <h3 className="demo-title">Demoyu izləyin</h3>
+        <div className="demo-section" >
+          <h3 className="demo-title" >Demoyu izləyin</h3>
           <p className="demo-description">2 dəqiqəlik videoda bütün prosesi görün</p>
           <button className="demo-button">
-            <span className="play-icon">▶</span>
+            <span className="play-icon" >▶</span>
             Demo Videonu İzlə
           </button>
         </div>

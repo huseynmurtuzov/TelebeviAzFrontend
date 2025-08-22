@@ -8,6 +8,7 @@ import Footer from './footer'
 import { useNotification } from './context/NotificationContext'
 import NavigationAfterLogin from './NavigationAfterLogin'
 import Navigation from './navigation'
+import FloatingActionButton from "./FloatingActionButton"
 function Homepage() {
   const {isLoggedIn} = useNotification();
   return (
@@ -16,10 +17,11 @@ function Homepage() {
         {isLoggedIn ? <NavigationAfterLogin/> : <Navigation/>}
         <Hero />
         <WhyTelebevi />
-        <BestChoice />
+        {/* <BestChoice /> */}
         <HowItWorks />
-        <SimpleEffective />
+        {/* <SimpleEffective /> */}
         <Footer />
+        {isLoggedIn && <FloatingActionButton />}
     </div>
   )
 }

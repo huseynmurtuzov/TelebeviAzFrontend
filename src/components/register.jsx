@@ -7,6 +7,8 @@ import ErrorComponent from '../components/errorComponent'
 import api from "../api"
 import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
+import BackArrow from "./BackArrow"
+import PasswordInput from "./PasswordInput"
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -22,7 +24,7 @@ export default function Register() {
     dateOfBirth: ""
   })
 
-  const { setLoading, showError, showInfo,isLoading,error } = useNotification();
+  const { setLoading, showError, showInfo,isLoading,error,setError } = useNotification();
   const totalSteps = 5
   const navigate = useNavigate();
 
@@ -171,27 +173,26 @@ const sendVerificationCode = async() => {
           <>
             <div className="form-group">
               <label className="form-label">Şifrə</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Şifrə daxil edin"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="form-input"
-                required
-              />
+              <PasswordInput
+                  name="password"
+                  placeholder="Şifrə"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
+
             </div>
             <div className="form-group">
               <label className="form-label">Şifrə təsdiqi</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Şifrənizi təsdiq edin"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                className="form-input"
-                required
-              />
+              <PasswordInput
+                  name="confirmPassword"
+                  placeholder="Təkrar Şifrə"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  required
+                />
             </div>
           </>
         )
@@ -286,8 +287,9 @@ const sendVerificationCode = async() => {
   // }
 
   return (
-    <>
-    <div className="register-container">
+    <div>
+      <BackArrow url={"/"}/>
+      <div className="register-container">
       <div className="register-card">
         <h1 className="register-title">Hesab yaradın</h1>
 
@@ -323,6 +325,6 @@ const sendVerificationCode = async() => {
         </div>
       </div>
     </div>
-    </>
+    </div>
   )
 }

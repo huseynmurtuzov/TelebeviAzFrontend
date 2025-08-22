@@ -6,12 +6,21 @@ import api from "../api"
 import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
 import pp from "../assets/placeholder-user.jpg"
+import {jwtDecode} from 'jwt-decode'
+
 
 export default function NavigationAfterLogin() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 const navigate = useNavigate();
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn } = useNotification();
+
+  const token = localStorage.getItem("accessToken");
+  let username;
+  if(token){
+    const decoded = jwtDecode(token);
+    username = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,11 +88,11 @@ const navigate = useNavigate();
             </span>
           </a>
           <div className="nav-links">
-            <a href="#" className="nav-link">
+            <a href="/listings" className="nav-link">
               Ev elanları
             </a>
-            <a href="#" className="nav-link">
-              Yataqxanalar
+            <a href="#howitworks" className="nav-link">
+              Necə işləyir
             </a>
             <a href="#" className="nav-link">
               Ev yoldaşı
@@ -95,7 +104,7 @@ const navigate = useNavigate();
         </div>
 
         <div className="nav-right">
-          <button className="notification-btn" title="Bildirişlər">
+          {/* <button className="notification-btn" title="Bildirişlər">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
@@ -113,12 +122,12 @@ const navigate = useNavigate();
               />
             </svg>
             <span className="notification-badge">3</span>
-          </button>
+          </button> */}
 
           <div className="profile-dropdown">
             <button className="profile-btn">
-              <img src={pp} alt="Profil" className="profile-avatar" />
-              <span className="profile-name" style={{fontSize:"1.4rem"}}>İstifadəçi</span>
+              <img src={pp} alt="Profil" className="profile-avatar" style={{marginTop:"10px"}}/>
+              <span className="profile-name" style={{fontSize:"1.4rem"}}>{username}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M6 9l6 6 6-6"
@@ -152,7 +161,7 @@ const navigate = useNavigate();
                 </svg>
                 Profilim
               </a>
-              <a href="/settings" className="dropdown-item">
+              {/* <a href="/settings" className="dropdown-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle
                     cx="12"
@@ -172,7 +181,7 @@ const navigate = useNavigate();
                   />
                 </svg>
                 Tənzimləmələr
-              </a>
+              </a> */}
               <div className="dropdown-divider"></div>
               <a onClick={handleLogout} className="dropdown-item logout" style={{cursor:"pointer"}}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom"
 import "../assets/styles/why-telebevi.css"
 
 const WhyTelebevi = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: "🏠",
@@ -20,7 +22,7 @@ const WhyTelebevi = () => {
       icon: "👥",
       title: "Müasir Qovmalar",
       description:
-        "Bütün elanlar yoxlanır və təsdiqlənir. Təhlükəsiz əməliyyat üçün qeyri-qanuni xidmətlərdən istifadə edin. 24/7 dəstək xidməti.",
+        "Bütün elanlar yoxlanır və təsdiqlənir. Təhlükəsiz məqsədi üçün zəng və ya mesaj yazdıqdan sonra pul köçürməsi etməyin.",
       stats: "99% Müştəri Məmnuniyyəti",
     },
   ]
@@ -45,7 +47,7 @@ const WhyTelebevi = () => {
               <div className="feature-content">
                 <h3 className="feature-title">{feature.title}</h3>
                 <p className="feature-description">{feature.description}</p>
-                <div className="feature-stats">{feature.stats}</div>
+                {/* <div className="feature-stats">{feature.stats}</div> */}
               </div>
             </div>
           ))}
@@ -54,7 +56,7 @@ const WhyTelebevi = () => {
         <div className="cta-section">
           <h3 className="cta-title">Hazır başlamağa?</h3>
           <p className="cta-description">Qeydiyyatdan keçin və ən yaxşı yaşayış yerlərini kəşf edin</p>
-          <button className="cta-button">İndi Qeydiyyatdan Keç</button>
+          <button className="cta-button" onClick={() => navigate("/register")} style={{cursor:"pointer"}}>İndi Qeydiyyatdan Keç</button>
         </div>
       </div>
     </section>

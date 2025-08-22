@@ -6,7 +6,7 @@
   font-size: 18px;
   font-weight: bold;
   color: #111827;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .filter-section {
@@ -149,4 +149,37 @@
   color: white;
   font-size: 12px;
   font-weight: bold;
+}
+
+.yeni-elan-button {
+  background-color: #12c18d;     
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(35, 180, 85, 0.08);
+  letter-spacing: 0.5px;
+}
+.delete-filter-button {
+  background-color: red;     
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(35, 180, 85, 0.08);
+  letter-spacing: 0.5px;
+}
+.filters-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }

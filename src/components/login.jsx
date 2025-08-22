@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
 import api from "../api"
 import Register from "./register"
+import PasswordInput from "./PasswordInput"
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -96,6 +97,16 @@ export default function Login() {
           </div>
 
           <div className="form-group">
+            <PasswordInput
+              name="password"
+              placeholder="Şifrə"
+              value={formData.password}
+              onChange={handleInputChange}
+              className="form-input"
+              required
+            />
+          </div>
+          {/* <div className="form-group">
             <input
               type="password"
               name="password"
@@ -105,16 +116,16 @@ export default function Login() {
               className="form-input"
               required
             />
-          </div>
+          </div> */}
 
           <div className="form-options">
-            <label className="remember-me">
+            {/* <label className="remember-me">
               <input type="checkbox" name="rememberMe" checked={formData.rememberMe} onChange={handleInputChange} />
               <span className="checkmark"></span>
               Məni Xatırla
-            </label>
+            </label> */}
 
-            <a href="#" className="forgot-password">
+            <a href="#" className="forgot-password" >
               Şifrəni unutdum
             </a>
           </div>

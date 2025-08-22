@@ -1,7 +1,9 @@
 import "../assets/styles/hero.css"
 import heroImage from "../assets/hero-bg.png"
+import { useNavigate } from "react-router-dom"
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="hero">
       <div className="hero-background">
@@ -14,10 +16,11 @@ const Hero = () => {
         <div className="hero-container">
           <h1 className="hero-title">Tələbələr üçün mənzil axtarışı</h1>
           <p className="hero-subtitle">
-            Tələbələr üçün uyğun qiymətə keyfiyyətli mənzil və yataqxana yerləri. Təhlükəsiz və rahat yaşayış üçün ən
-            yaxşı variantları seçdik. Həmyaşıdlarınızla birlikdə yaşayın və təhsil həyatınızdan maksimum zövq alın.
+            Tələbəsən və Bakıda kirayə ev axtarırsan? Ya da ev tapmısan ama otaq yoldaşı axtarırsan? Tam doğru yerdəsən.
+            Bu platforma daha çox bölgələrdən Bakıya gəlib kirayə ev axtaran tələbələr üçün qurulub və heç bir kar amacı
+            güdmür.
           </p>
-          <div className="hero-stats">
+          {/* <div className="hero-stats">
             <div className="stat-item">
               <span className="stat-number">5000+</span>
               <span className="stat-label">Aktiv Elan</span>
@@ -30,10 +33,10 @@ const Hero = () => {
               <span className="stat-number">50+</span>
               <span className="stat-label">Şəhər</span>
             </div>
-          </div>
+          </div> */}
           <div className="hero-actions">
-            <button className="hero-btn primary">Elanlara bax</button>
-            <button className="hero-btn secondary">Necə işləyir?</button>
+            <a className="hero-btn primary" href="/listings">Elanlara bax</a>
+            <a href="#howitworks" className="hero-btn secondary">Necə işləyir?</a>
           </div>
         </div>
       </div>

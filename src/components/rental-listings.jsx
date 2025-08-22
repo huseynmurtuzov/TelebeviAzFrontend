@@ -9,17 +9,51 @@ import Footer from "./footer"
 import api from "../api"
 import { data, useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
+import Pagination from "./Pagination"
 
 export default function RentalListings() {
-  const [viewMode, setViewMode] = useState("list")
-  const [listings, setListings] = useState([])
-   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn } = useNotification();
-const navigate = useNavigate();
+  // const [viewMode, setViewMode] = useState("list")
+  // const [listings, setListings] = useState([])
+  const [filters, setFilters] = useState({
+  selectedRooms: null,
+  selectedAreas: null,
+  priceRange: [0, 2000],
+  selectedLocation: null,
+  amenities: { onlyGirls: false, onlyBoys: false }
+})
+  const [totalCount, setTotalCount] = useState(0);
+  const pageSize = 4
+   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,listings,setListings,currentPage,setCurrentPage } = useNotification();
+  const navigate = useNavigate();
 
+
+  const handleDataFromChild = (data) => {
+    setFilters(data);
+    setCurrentPage(1);
+  };
 
 
   const getRentalsFunction = async () => {
-    return await api.get("/Listing");
+    let min, max;
+  if(filters.selectedAreas){
+    [min, max] = filters.selectedAreas.split('-').map(Number);
+  } else {
+    min = null; 
+    max = null;
+  }
+    return await api.get("/Listing/filteredListings",{
+      params:{
+        roomCount:filters.selectedRooms,
+        minArea:min,
+        maxArea:max,
+        minPrice:filters.priceRange[0],
+        maxPrice:filters.priceRange[1],
+        onlyGirls:filters.amenities.onlyGirls,
+        onlyBoys:filters.amenities.onlyBoys,
+        location:filters.selectedLocation,
+        page: currentPage, 
+        pageSize }
+    });
   }
 
 
@@ -28,21 +62,21 @@ const navigate = useNavigate();
     setLoading(true);
     try {
       const response = await getRentalsFunction();
-      // Axios response-dursa:
-      setListings(response.data);
+      setListings(response.data.items);
+      setTotalCount(response.data.totalCount)
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
         console.log(err.response.data);
       } else {
-        showError("Xəta baş verdi!");
+        // showError("Xəta baş verdi!");
       }
     } finally {
       setLoading(false);
     }
   };
   fetchListings();
-}, []);
+}, [currentPage,filters]);
 
 
 
@@ -53,7 +87,7 @@ const navigate = useNavigate();
       <NavigationSearch/>
       <div className="listings-container">
         <aside className="filters-sidebar">
-          <Filters />
+          <Filters  sendDataToParent={handleDataFromChild}/>
         </aside>
 
         <main className="listings-main">
@@ -76,20 +110,12 @@ const navigate = useNavigate();
           </div>
 
           <div className="properties-grid">
-            {listings.map((property) => (
+            {listings?.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
 
-          <div className="pagination">
-            <button className="pagination-arrow">‹</button>
-            <button className="pagination-number active">1</button>
-            <button className="pagination-number">2</button>
-            <button className="pagination-number">3</button>
-            <span className="pagination-dots">...</span>
-            <button className="pagination-number">10</button>
-            <button className="pagination-arrow">›</button>
-          </div>
+          <Pagination currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} onPageChange={setCurrentPage}/>
         </main>
       </div>
       <Footer/>

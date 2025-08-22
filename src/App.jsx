@@ -16,6 +16,13 @@ import Profile from "./components/profile"
 import VerificationCode from "./components/VerificationCode"
 import { NotificationProvider } from "./components/context/NotificationContext"
 import GlobalStatus from "./components/context/GlobalStatus"
+import { PublicRoute } from "./components/PublicRoute"
+import { PrivateRoute } from "./components/PrivateRoute"
+import ListingDetail from "./components/ListingDetail"
+import CreateListing from "./components/CreateListing"
+import AcceptAllCookies from "./components/AcceptAllCookies"
+import TermsOfUse from "./components/TermsOfUse"
+import UserProfileEdit from "./components/UserProfileEdit"
 
   export default function App() {
     return (
@@ -25,15 +32,38 @@ import GlobalStatus from "./components/context/GlobalStatus"
           <GlobalStatus/>
         <Routes>
           <Route path={"/"} element={<Homepage/>}/>
-          <Route path={"/search"} element={<RentalListings/>}/>
-          <Route path={"/login"} element={<Login/>}/>
-          <Route path={"/register"} element={<Register/>}/>
-          <Route path={"/rent-details/:id"} element={<RentalDetail/>}/>
-          <Route path={"/profile"} element={<Profile/>}/>
+          <Route path={"/listings"} element={<RentalListings/>}/>
+          <Route path={"/login"} element={
+            <PublicRoute>
+              <Login/>
+            </PublicRoute>
+          }/>
+          <Route path={"/register"} element={
+            <PublicRoute>
+              <Register/>
+            </PublicRoute>
+          }/>
+          <Route path={"/rent-details/:id"} element={<ListingDetail/>}/>
+          <Route path={"/profile"} element={
+            <PrivateRoute>
+              <Profile/>
+            </PrivateRoute>
+          }/>
+          <Route path={"/createListing"} element={
+            <PrivateRoute>
+              <CreateListing/>
+            </PrivateRoute>
+          }/>
+          <Route path={"/editProfile"} element={
+            <PrivateRoute>
+              <UserProfileEdit/>
+            </PrivateRoute>
+          }/>
           <Route path={"/verifyEmail"} element={<VerificationCode/>}/>
+          <Route path={"/termsOfUse"} element={<TermsOfUse/>}/>
         </Routes>
         </NotificationProvider>
-        
+        <AcceptAllCookies />
         </BrowserRouter>
       </div>
     )

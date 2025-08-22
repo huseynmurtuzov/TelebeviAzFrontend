@@ -1,0 +1,27 @@
+.fab-btn {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.21), 0 2px 6px rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.fab-btn:hover {
+  background: #059669;
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.26), 0 3px 8px rgba(0,0,0,0.09);
+}
+
+.fab-btn svg {
+  display: block;
+}
