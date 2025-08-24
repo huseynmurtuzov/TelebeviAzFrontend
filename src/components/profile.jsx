@@ -43,7 +43,7 @@ export default function Profile() {
 
   const handleEditListing = (listing) => {
   // məsələn, redaktə səhifəsinə yönləndir:
-  navigate(`/editListing/${listing.id}`)
+  navigate(`/updateListing/${listing.id}`)
 };
 
 const handleDeleteListing = async (listing) => {
@@ -65,11 +65,9 @@ const handleDeleteListing = async (listing) => {
     try {
       const response = await getUserInfoFunction();
       setUserProfile(response.data);
-      console.log(response)
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         // showError("Xəta baş verdi!");
       }
@@ -86,7 +84,6 @@ const handleDeleteListing = async (listing) => {
       try {
         const response = await getUserListings();
         setUserListings(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
@@ -106,7 +103,6 @@ const handleDeleteListing = async (listing) => {
       try {
         const response = await getUsersFavoriteListings();
         setUserFavoritedListings(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
@@ -122,7 +118,6 @@ const handleDeleteListing = async (listing) => {
 
 
   const handleEditProfile = () => {
-    console.log("Edit profile clicked")
     navigate("/editProfile")
     // Handle edit profile logic
   }

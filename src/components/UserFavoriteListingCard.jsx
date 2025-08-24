@@ -27,19 +27,15 @@ export default function UserFavoriteListingCard({ listing }) {
       setLoading(true);
       try {
         const response = await getImagesFunction();
-        console.log(response)
         setImages(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           // showError("Xəta baş verdi!");
         }
       } finally {
         setLoading(false);
-        console.log(images)
       }
     };
     fetchImages();
@@ -53,7 +49,6 @@ export default function UserFavoriteListingCard({ listing }) {
     setLoading(true);
       try {
         const response = await removeFromFavoritesFunction(userId,listingId);
-        // console.log(response)
         if(response.status == 200 || response.status == 201){
           showInfo("Elan sevimlilərdən çıxarıldı");
           listingCard.current.style.display = "none"
@@ -61,13 +56,11 @@ export default function UserFavoriteListingCard({ listing }) {
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           // showError("Xəta baş verdi!");
         }
       } finally {
         setLoading(false);
-        // console.log(images)
       }
   }
   // useEffect(() => {

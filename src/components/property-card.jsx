@@ -19,13 +19,10 @@ export default function PropertyCard({ property }) {
       setLoading(true);
       try {
         const response = await getImagesFunction();
-        // console.log(response)
         setImages(response.data);
-        // console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           showError("Xəta baş verdi!");
         }
@@ -35,7 +32,6 @@ export default function PropertyCard({ property }) {
     };
     fetchImages();
   }, []);
-  // console.log(property)
   return (
     <div className="property-card" onClick={() => navigate(`/rent-details/${property.id}`)}>
       <div className="property-image">

@@ -8,7 +8,6 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("Searching for:", searchTerm)
   }
 
   return (

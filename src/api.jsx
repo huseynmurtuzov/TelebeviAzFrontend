@@ -55,7 +55,6 @@ api.interceptors.response.use(
           { withCredentials: true }
         );
 
-        console.log(res.data)
         const newToken = res.data.accessToken;
         if (!newToken) {
           throw new Error("No accessToken in refresh response");

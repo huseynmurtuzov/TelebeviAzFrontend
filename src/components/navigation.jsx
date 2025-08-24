@@ -42,10 +42,11 @@ export default function Navigation() {
     <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="nav-left">
-          <a href="/" className="logo">
+          <a href="/" className="logo" style={{display:"flex",alignItems:"center",columnGap:"1rem"}}>
             <span>
               <img src={logo} className="logo_itself" alt="" />
             </span>
+            <span> <span style={{color:"#92C9DD"}}>| Be</span><span style={{color:"#e1d36c"}}>ta</span></span>
           </a>
           <div className="nav-links">
             <a href="/listings" className="nav-link">
@@ -53,12 +54,6 @@ export default function Navigation() {
             </a>
             <a href="#howitworks" className="nav-link">
               Necə işləyir
-            </a>
-            <a href="#" className="nav-link">
-              Ev yoldaşı
-            </a>
-            <a href="#" className="nav-link">
-              Dəstək
             </a>
           </div>
         </div>

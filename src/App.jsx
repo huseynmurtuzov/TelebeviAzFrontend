@@ -23,6 +23,7 @@ import CreateListing from "./components/CreateListing"
 import AcceptAllCookies from "./components/AcceptAllCookies"
 import TermsOfUse from "./components/TermsOfUse"
 import UserProfileEdit from "./components/UserProfileEdit"
+import UpdateListingComponent from "./components/UpdateListingComponent"
 
   export default function App() {
     return (
@@ -57,6 +58,11 @@ import UserProfileEdit from "./components/UserProfileEdit"
           <Route path={"/editProfile"} element={
             <PrivateRoute>
               <UserProfileEdit/>
+            </PrivateRoute>
+          }/>
+          <Route path={"/updateListing/:id"} element={
+            <PrivateRoute>
+              <UpdateListingComponent/>
             </PrivateRoute>
           }/>
           <Route path={"/verifyEmail"} element={<VerificationCode/>}/>

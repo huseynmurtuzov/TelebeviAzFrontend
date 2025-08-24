@@ -67,7 +67,6 @@ export default function RentalListings() {
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         // showError("Xəta baş verdi!");
       }

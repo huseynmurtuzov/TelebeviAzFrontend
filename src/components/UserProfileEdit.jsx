@@ -43,11 +43,9 @@ const UserProfileEdit = () => {
         surname:response.data.surName,
         phoneNumber:response.data.phoneNumber
       });
-      console.log(response)
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         // showError("Xəta baş verdi!");
       }
@@ -90,7 +88,6 @@ const UserProfileEdit = () => {
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           // showError("Xəta baş verdi!");
         }

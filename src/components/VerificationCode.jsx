@@ -81,7 +81,6 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
 
   const submitVerificationFunction = async () => {
     const email = location.state?.email;
-    console.log(email,code)
     return await api.post("/Account/checkCode",{
       email:email,
       verificationCode:code.join("")
@@ -101,12 +100,10 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
     } catch (err) {
       if (err.response && err.response.data) {
         if (Array.isArray(err.response.data)) {
-          console.log(err)
           setError(err.response.data[0]?.message || "Xəta baş verdi!");
         } else {
           setError(err.response.data.message || "Xəta baş verdi!");
         }
-        console.log(err.response.data);
       } else {
         setError("Xəta baş verdi!");
       }

@@ -19,19 +19,15 @@ export default function UserListingCard({ listing, onEdit, onDelete }) {
       setLoading(true);
       try {
         const response = await getImagesFunction();
-        console.log(response)
         setImages(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           // showError("Xəta baş verdi!");
         }
       } finally {
         setLoading(false);
-        console.log(images)
       }
     };
     fetchImages();
@@ -74,7 +70,7 @@ export default function UserListingCard({ listing, onEdit, onDelete }) {
             </button>
             {menuOpen && (
               <div className="menu-dropdown">
-                <button onClick={() => { setMenuOpen(false); onEdit(listing); }}>Redaktə et</button>
+                <button onClick={() => { setMenuOpen(false); onEdit(listing); () => navigate("/updateListing") }}>Redaktə et</button>
                 <button onClick={() => { setMenuOpen(false); onDelete(listing); }}>Sil</button>
               </div>
             )}

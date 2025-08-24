@@ -30,17 +30,14 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("Login attempt:", formData)
-    // Handle login logic here
+  // Handle login logic here
   }
 
   const handleSocialLogin = () => {
-    console.log("Social media login")
     // Handle social media login
   }
 
   const handleEmailLogin = () => {
-    console.log("Email login")
     // Handle email login
   }
 
@@ -58,7 +55,6 @@ export default function Login() {
     try{
       const response = await handleLoginFunction(formData)
       if (response.status === 200 || response.status === 201){
-        console.log(response);
         showInfo("Login oldunuz!");
         localStorage.setItem("accessToken",response.data.accessToken)
         localStorage.setItem("refreshToken",response.data.refreshToken)
@@ -68,7 +64,6 @@ export default function Login() {
     }catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         showError("Xəta baş verdi!");
       }
@@ -125,9 +120,9 @@ export default function Login() {
               Məni Xatırla
             </label> */}
 
-            <a href="#" className="forgot-password" >
+            {/* <a href="#" className="forgot-password" >
               Şifrəni unutdum
-            </a>
+            </a> */}
           </div>
 
           <button type="submit" className="login-button" onClick={e => handleLogin(e)}>

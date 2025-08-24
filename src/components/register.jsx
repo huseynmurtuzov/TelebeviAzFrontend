@@ -50,7 +50,6 @@ export default function Register() {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1)
     } else {
-      console.log("Registrasiya tamamlandı:", formData)
     }
   }
 
@@ -87,7 +86,6 @@ const sendVerificationCode = async() => {
     try {
       const response = await register(formData);
       if (response.status === 200 || response.status === 201) {
-        console.log(response.data);
         const response2 = await sendVerificationCode();
         if (response.status === 200 || response.status === 201){
           showInfo("Mailinzə verifikasiya kodu göndərdik")
@@ -97,8 +95,6 @@ const sendVerificationCode = async() => {
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(error)
-        console.log(err.response.data);
       } else {
         showError("Xəta baş verdi!");
       }

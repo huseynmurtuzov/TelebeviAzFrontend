@@ -39,7 +39,6 @@ export default function RentalDetail() {
   }
 
   const handleRequest = () => {
-    console.log("Making request for property")
     // Handle request logic
   }
 

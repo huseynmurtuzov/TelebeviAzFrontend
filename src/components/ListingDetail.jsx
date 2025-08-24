@@ -34,12 +34,10 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
     try {
       const response = await getRentalFunction();
       setProperty(response.data);
-      console.log(response)
       // fetchUser();
     } catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         // showError("Xəta baş verdi!");
       }
@@ -58,13 +56,10 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
       setLoading(true);
       try {
         const response = await getImagesFunction();
-        console.log(response)
         setImages(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");
-          // console.log(err.response.data);
         } else {
           // showError("Xəta baş verdi!");
         }
@@ -84,7 +79,6 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
       try {
         const response = await getUserFunction();
         setUserData(response.data);
-        console.log(response.data)
       } catch (err) {
         if (err.response && err.response.data) {
           showError(err.response.data.message || "Xəta baş verdi!");

@@ -11,6 +11,8 @@ export default function LoadingScreen() {
         alt="Logo"
         className='logo loading'
       />
+    <h4 className="author-title" style={{color:"black"}}>Developed by <span style={{color:"#92C9DD"}}>Murtuzov</span> <span style={{color:"#13C38B"}}>Hüseyn</span></h4>
     </div>
+
   )
 }

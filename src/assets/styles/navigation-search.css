@@ -128,6 +128,9 @@ body.navbar-fixed {
   .nav-container {
     gap: 10px;
   }
+  /* .navigation.scrolled{
+    position: relative;
+  } */
 }
 
 .yeni-elan-button {

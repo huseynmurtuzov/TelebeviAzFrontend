@@ -69,7 +69,6 @@ const navigate = useNavigate();
     }catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
-        console.log(err.response.data);
       } else {
         showError("Xəta baş verdi!");
       }
@@ -78,14 +77,17 @@ const navigate = useNavigate();
     }
   }
 
+
+
   return (
     <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="nav-left">
-          <a href="/" className="logo">
+          <a href="/" className="logo" style={{display:"flex",alignItems:"center",columnGap:"1rem"}}>
             <span>
-              <img src={logo || "/placeholder.svg"} className="logo_itself" alt="" />
+              <img src={logo} className="logo_itself" alt="" />
             </span>
+            <span> <span style={{color:"#92C9DD"}}>| Be</span><span style={{color:"#e1d36c"}}>ta</span></span>
           </a>
           <div className="nav-links">
             <a href="/listings" className="nav-link">
@@ -94,12 +96,7 @@ const navigate = useNavigate();
             <a href="#howitworks" className="nav-link">
               Necə işləyir
             </a>
-            <a href="#" className="nav-link">
-              Ev yoldaşı
-            </a>
-            <a href="#" className="nav-link">
-              Dəstək
-            </a>
+            
           </div>
         </div>
 
@@ -126,8 +123,8 @@ const navigate = useNavigate();
 
           <div className="profile-dropdown">
             <button className="profile-btn">
-              <img src={pp} alt="Profil" className="profile-avatar" style={{marginTop:"10px"}}/>
-              <span className="profile-name" style={{fontSize:"1.4rem"}}>{username}</span>
+              <img src={pp} alt="Profil" className="profile-avatar" style={{marginTop:"20px"}}/>
+              <span className="profile-nameha" style={{fontSize:"1.4rem"}}>{username}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M6 9l6 6 6-6"
@@ -253,33 +250,27 @@ const navigate = useNavigate();
       </div>
 
       {showMobileMenu && (
-        <div className="mobile-menu">
-          <div className="mobile-nav-links">
-            <a href="#" className="mobile-nav-link">
-              Ev elanları
-            </a>
-            <a href="#" className="mobile-nav-link">
-              Yataqxanalar
-            </a>
-            <a href="#" className="mobile-nav-link">
-              Ev yoldaşı
-            </a>
-            <a href="#" className="mobile-nav-link">
-              Dəstək
-            </a>
-          </div>
-          <div className="mobile-user-section">
-            <a href="/profile" className="mobile-nav-link">
-              Profilim
-            </a>
-            <a href="/settings" className="mobile-nav-link">
-              Tənzimləmələr
-            </a>
-            <a onClick={handleLogout} style={{cursor:"pointer"}} className="mobile-nav-link logout">
-              Çıxış
-            </a>
-          </div>
+        <>
+        <button className="mobile-menu-button" onClick={() => setShowMobileMenu(!showMobileMenu)} aria-label="Toggle menu">
+            <span className={`hamburger-line ${showMobileMenu ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${showMobileMenu ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${showMobileMenu ? "open" : ""}`}></span>
+          </button>
+
+      <div className={`mobile-menu ${showMobileMenu ? "open" : ""}`}>
+        <div className="mobile-menu-links">
+          <a href="/listings" className="mobile-nav-link" onClick={() => setShowMobileMenu(false)}>
+            Ev elanları
+          </a>
+          <a href="#howitworks" className="mobile-nav-link" onClick={() => setShowMobileMenu(false)}>
+            Necə işləyir
+          </a>
         </div>
+      </div>
+
+      {showMobileMenu && <div className="mobile-menu-overlay" onClick={() => setShowMobileMenu(false)}></div>}
+    
+        </>
       )}
     </nav>
   )

@@ -108,7 +108,6 @@ export default function Filters({sendDataToParent}) {
     //   try {
     //     const response = await handleFilterFunction();
     //     setListings(response.data);
-    //     // console.log(response.data)
     //   } catch (err) {
     //     if (err.response && err.response.data) {
     //       showError(err.response.data.message || "Xəta baş verdi!");
