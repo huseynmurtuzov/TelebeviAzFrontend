@@ -51,7 +51,7 @@ api.interceptors.response.use(
 
         // Refresh JWT request
         const res = await axios.post(
-          "https://localhost:7107/api/Account/refreshJwt",
+          process.env.REACT_APP_API_URL+"/Account/refreshJwt",
           { refreshToken: refreshToken },
           { withCredentials: true }
         );
