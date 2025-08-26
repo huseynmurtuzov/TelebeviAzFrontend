@@ -24,7 +24,7 @@ import AcceptAllCookies from "./components/AcceptAllCookies"
 import TermsOfUse from "./components/TermsOfUse"
 import UserProfileEdit from "./components/UserProfileEdit"
 import UpdateListingComponent from "./components/UpdateListingComponent"
-console.log("ENV::", process.env);
+console.log("ENV::", import.meta.env.VITE_API_URL);
 
   export default function App() {
     return (
