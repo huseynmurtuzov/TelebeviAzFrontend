@@ -2,7 +2,7 @@ import axios from "axios";
 import { string } from "zod";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.VITE_API_URL,
   withCredentials: true,
 });
 
