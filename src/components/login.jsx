@@ -43,7 +43,6 @@ export default function Login() {
 
 
   const handleLoginFunction = async (formData) => {
-    console.log("API URL:", process.env.REACT_APP_API_URL);
   return await api.post("/Account/login", {
     email:formData.email,
     password:formData.password
