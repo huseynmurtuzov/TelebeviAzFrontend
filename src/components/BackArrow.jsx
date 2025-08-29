@@ -1,9 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function BackArrow({ url }) {
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1)
+  }
   return (
     <a
-      href={url}
+      // href={url}
+      onClick={handleBack}
       style={{
         position: "fixed",
         top: "24px",
