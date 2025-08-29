@@ -68,7 +68,7 @@ export default function Navigation() {
             </a>
           </div>
 
-          <button className="mobile-menu-button" onClick={toggleMobileMenu} aria-label="Toggle menu">
+          <button className="mobile-menu-button" onClick={toggleMobileMenu} aria-label="Toggle menu" style={{marginTop:"10px"}}>
             <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
             <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
             <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
