@@ -281,6 +281,8 @@ const UpdateListingComponent = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateListing()) return;
+
     setLoading(true);
     try {
       const sendingFormData = new FormData();
