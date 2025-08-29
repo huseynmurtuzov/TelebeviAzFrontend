@@ -22,6 +22,14 @@ const CreateListing = () => {
     area: "",
     photos: [],
   })
+
+  
+
+
+
+
+
+
    const locations = [
   "Yeni Yasamal",
   "Nəsimi",
@@ -76,6 +84,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
       ...prev,
       [name]: value,
     }))
+    setErrors({})
   }
 
   const handleCheckboxChange = (value) => {

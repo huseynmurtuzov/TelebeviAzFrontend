@@ -63,6 +63,83 @@ const UpdateListingComponent = () => {
   const { setLoading, showError, showInfo } = useNotification();
   const navigate = useNavigate();
   const { id: listingId } = useParams();
+  const [errors, setErrors] = useState({})
+
+  const validateListing = () => {
+  let newErrors = {};
+  // Title: required, max 100 char
+  if (!formData.title) {
+    newErrors.title = "Başlıq boş ola bilməz";
+  } else if (formData.title.length > 100) {
+    newErrors.title = "Başlıq 100 simvoldan uzun olmamalıdır";
+  }
+
+  // Description: required
+  if (!formData.description) {
+    newErrors.description = "Açıqlama boş ola bilməz";
+  }
+
+  // Price: required, number, > 0
+  if (!formData.price) {
+    newErrors.price = "Qiymət boş ola bilməz";
+  } else if (isNaN(Number(formData.price))) {
+    newErrors.price = "Qiymət rəqəm olmalıdır";
+  } else if (Number(formData.price) < 1) {
+    newErrors.price = "Qiymət 1-dən kiçik ola bilməz";
+  }
+
+  // City: required, max 50 char
+  if (!formData.city) {
+    newErrors.city = "Şəhər boş ola bilməz";
+  } else if (formData.city.length > 50) {
+    newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
+  }
+
+  // District: required, max 50 char
+  if (!formData.district) {
+    newErrors.district = "Rayon boş ola bilməz";
+  } else if (formData.district.length > 50) {
+    newErrors.district = "Rayon adı 50 simvoldan uzun olmamalıdır";
+  }
+
+  // Address: required
+  if (!formData.address) {
+    newErrors.address = "Ünvan boş ola bilməz";
+  }
+
+  // Location: required
+  if (!formData.location) {
+    newErrors.location = "Location boş ola bilməz";
+  }
+
+  // Room count: required, number, > 0
+  if (!formData.roomCount) {
+    newErrors.roomCount = "Otaq sayı boş ola bilməz";
+  } else if (isNaN(Number(formData.roomCount))) {
+    newErrors.roomCount = "Otaq sayı rəqəm olmalıdır";
+  } else if (Number(formData.roomCount) < 1) {
+    newErrors.roomCount = "Otaq sayı 1-dən az ola bilməz";
+  }
+
+  // onlyFor: required
+  if (!formData.onlyFor) {
+    newErrors.onlyFor = "Kim üçün olduğu seçilməlidir";
+  }
+
+  // Area: required, number, > 0
+  if (!formData.area) {
+    newErrors.area = "Sahə boş ola bilməz";
+  } else if (isNaN(Number(formData.area))) {
+    newErrors.area = "Sahə rəqəm olmalıdır";
+  } else if (Number(formData.area) < 1) {
+    newErrors.area = "Sahə 1-dən az ola bilməz";
+  }
+
+  // photos: optional, yoxlama yoxdur
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const token = localStorage.getItem("accessToken");
   let userId;
@@ -73,6 +150,24 @@ const UpdateListingComponent = () => {
       decoded.sub ||
       decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
   }
+  useEffect(() => {
+    const fetchImages = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get(`/ListingImage/${listingId}`);
+        setFormData((prev) => ({
+          ...prev,
+          photos: response.data,
+        }));
+        
+      } catch (err) {
+        showError(err.response?.data?.message || "Xəta baş verdi!");
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (listingId) fetchImages();
+  }, [listingId]);
 
   // Elan məlumatını çək
   useEffect(() => {
@@ -92,8 +187,7 @@ const UpdateListingComponent = () => {
           location: data.location || "",
           roomCount: data.roomCount || "",
           onlyFor: Number(data.onlyFor) || "",
-          area: data.area || "",
-          photos: [], 
+          area: data.area || "", 
         }));                
       } catch (err) {
         showError(err.response?.data?.message || "Xəta baş verdi!");
@@ -102,7 +196,6 @@ const UpdateListingComponent = () => {
       }
     };
     if (listingId) fetchListing();
-    // eslint-disable-next-line
   }, [listingId]);
 
 
@@ -125,8 +218,9 @@ const UpdateListingComponent = () => {
       }
     };
     if (listingId) fetchImages();
-    // eslint-disable-next-line
   }, [listingId]);
+
+
 
   // Input dəyişiklikləri
   const handleInputChange = (e) => {
@@ -135,6 +229,7 @@ const UpdateListingComponent = () => {
       ...prev,
       [name]: value,
     }));
+    setErrors({})
   };
 
   // Radio dəyişiklikləri
@@ -163,7 +258,7 @@ const UpdateListingComponent = () => {
     }));
   };
 
-  // Şəkil sil
+  
   const removePhoto = async(photo,index) => {
     setFormData((prev) => ({
       ...prev,
@@ -184,7 +279,6 @@ const UpdateListingComponent = () => {
   };
 
   
-  // Submit et
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -265,7 +359,7 @@ const UpdateListingComponent = () => {
                         src={
                           photo instanceof File
                             ? URL.createObjectURL(photo)
-                            : photo.imageUrl || "/placeholder.svg"
+                            : photo.imageUrl 
                         }
                         alt={`Preview ${index + 1}`}
                       />

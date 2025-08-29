@@ -14,6 +14,34 @@ const UserProfileEdit = () => {
     surname: "",
     phoneNumber: "",
   })
+  const [errors, setErrors] = useState({})
+
+  const validateStep = () => {
+    let newErrors = {};
+    const onlyLettersRegex = /^[A-Za-zÇçĞğİıÖöŞşÜüƏə\s]+$/;
+
+    if (!formData.name) {
+      newErrors.name = "Ad boş ola bilməz";
+    } else if (!onlyLettersRegex.test(formData.name)) {
+      newErrors.name = "Ad yalnız hərflərdən ibarət olmalıdır";
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = "Ad ən az 3 hərfdən ibarət olmalıdır";
+    }
+
+    if (!formData.surname) {
+      newErrors.surname = "Soyad boş ola bilməz";
+    } else if (!onlyLettersRegex.test(formData.surname)) {
+      newErrors.surname = "Soyad yalnız hərflərdən ibarət olmalıdır";
+    } else if (formData.surname.trim().length < 3) {
+      newErrors.surname = "Soyad ən az 3 hərfdən ibarət olmalıdır";
+    }
+
+    if (!formData.email || !formData.email.includes("@")) newErrors.email = "Düzgün email daxil edin";
+      if (!formData.phoneNumber || !/^\d{9,10}$/.test(formData.phoneNumber)) newErrors.phoneNumber = "Telefon nömrəsi 9 və ya 10 rəqəm olmalıdır";
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const [userInfo, setUserInfo] = useState()
     const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn } = useNotification();
@@ -64,6 +92,7 @@ const UserProfileEdit = () => {
       ...prev,
       [name]: value,
     }))
+    setErrors({});
   }
 
   const handleSubmitFunction = async () => {
@@ -78,6 +107,7 @@ const UserProfileEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!validateStep()) return;
     setLoading(true);
       try {
         const response = await handleSubmitFunction();
@@ -119,6 +149,7 @@ const UserProfileEdit = () => {
                 required
                 placeholder="Adınızı daxil edin"
               />
+              {errors.name && <div className="error">{errors.name}</div>}
             </div>
 
             <div className="form-group">
@@ -132,6 +163,7 @@ const UserProfileEdit = () => {
                 required
                 placeholder="Soyadınızı daxil edin"
               />
+              {errors.surname && <div className="error">{errors.surname}</div>}
             </div>
           </div>
 
@@ -148,6 +180,7 @@ const UserProfileEdit = () => {
                 required
                 placeholder="+994501234567"
               />
+              {errors.phoneNumber && <div className="error">{errors.phoneNumber}</div>}
             </div>
           </div>
 

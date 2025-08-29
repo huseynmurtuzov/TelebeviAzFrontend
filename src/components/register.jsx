@@ -10,6 +10,9 @@ import { useNotification } from "./context/NotificationContext"
 import BackArrow from "./BackArrow"
 import PasswordInput from "./PasswordInput"
 
+
+
+
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -24,9 +27,53 @@ export default function Register() {
     dateOfBirth: ""
   })
 
+  const [errors, setErrors] = useState({})
   const { setLoading, showError, showInfo,isLoading,error,setError } = useNotification();
   const totalSteps = 5
   const navigate = useNavigate();
+
+
+  const validateStep = () => {
+    let newErrors = {};
+    const onlyLettersRegex = /^[A-Za-zÇçĞğİıÖöŞşÜüƏə\s]+$/;
+
+  if (currentStep === 1) {
+    if (!formData.name) {
+      newErrors.name = "Ad boş ola bilməz";
+    } else if (!onlyLettersRegex.test(formData.name)) {
+      newErrors.name = "Ad yalnız hərflərdən ibarət olmalıdır";
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = "Ad ən az 3 hərfdən ibarət olmalıdır";
+    }
+
+    if (!formData.surname) {
+      newErrors.surname = "Soyad boş ola bilməz";
+    } else if (!onlyLettersRegex.test(formData.surname)) {
+      newErrors.surname = "Soyad yalnız hərflərdən ibarət olmalıdır";
+    } else if (formData.surname.trim().length < 3) {
+      newErrors.surname = "Soyad ən az 3 hərfdən ibarət olmalıdır";
+    }
+  }
+    if (currentStep === 2) {
+      if (!formData.email || !formData.email.includes("@")) newErrors.email = "Düzgün email daxil edin";
+      if (!formData.phoneNumber || !/^\d{9,10}$/.test(formData.phoneNumber)) newErrors.phoneNumber = "Telefon nömrəsi 9 və ya 10 rəqəm olmalıdır";
+    }
+    if (currentStep === 3) {
+      if (!formData.password || formData.password.length < 6) newErrors.password = "Şifrə ən az 6 simvoldan ibarət olmalıdır";
+      if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Şifrə və təsdiq şifrəsi eyni olmalıdır";
+    }
+    if (currentStep === 4) {
+      if (!formData.userType) newErrors.userType = "İstifadəçi tipi seçin";
+      if (!formData.gender) newErrors.gender = "Cins seçin";
+      if (!formData.dateOfBirth) newErrors.dateOfBirth = "Doğum tarixi seçin";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+
+
 
   
   const handleInputChange = (e) => {
@@ -35,32 +82,27 @@ export default function Register() {
       ...prev,
       [name]: value,          
     }))
+    setErrors({})
     setError("")
   }
 
   const handleNext = (e) => {
     e.preventDefault()
-    if (currentStep === 3) {
-      if (formData.password !== formData.confirmPassword) {
-        showError("Şifrə və təsdiq şifrəsi eyni olmalıdır!")
-        return
-      }
-    }
-    setError("")
+    if (!validateStep()) return;
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1)
-    } else {
     }
   }
 
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
+      setErrors({})
       // setError("")
     }
   }
 
-  const register = async (formData) => {
+  const registerAsync = async (formData) => {
   return await api.post("/Account/Register", {
     name: formData.name,
     surname: formData.surname,
@@ -84,7 +126,7 @@ const sendVerificationCode = async() => {
     setLoading(true);
 
     try {
-      const response = await register(formData);
+      const response = await registerAsync(formData);
       if (response.status === 200 || response.status === 201) {
         const response2 = await sendVerificationCode();
         if (response.status === 200 || response.status === 201){
@@ -120,6 +162,7 @@ const sendVerificationCode = async() => {
                 className="form-input"
                 required
               />
+              {errors.name && <div className="error">{errors.name}</div>}
             </div>
             <div className="form-group">
               <label className="form-label">Soyad</label>
@@ -132,6 +175,7 @@ const sendVerificationCode = async() => {
                 className="form-input"
                 required
               />
+              {errors.surname && <div className="error">{errors.surname}</div>}
             </div>
           </>
         )
@@ -149,6 +193,7 @@ const sendVerificationCode = async() => {
                 className="form-input"
                 required
               />
+              {errors.email && <div className="error">{errors.email}</div>}
             </div>
             <div className="form-group">
               <label className="form-label">Nömrə</label>
@@ -161,6 +206,7 @@ const sendVerificationCode = async() => {
                 className="form-input"
                 required
               />
+              {errors.phoneNumber && <div className="error">{errors.phoneNumber}</div>}
             </div>
           </>
         )
@@ -177,7 +223,7 @@ const sendVerificationCode = async() => {
                   className="form-input"
                   required
                 />
-
+              {errors.password && <div className="error">{errors.password}</div>}
             </div>
             <div className="form-group">
               <label className="form-label">Şifrə təsdiqi</label>
@@ -189,6 +235,7 @@ const sendVerificationCode = async() => {
                   className="form-input"
                   required
                 />
+                {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
             </div>
           </>
         )
@@ -208,6 +255,7 @@ const sendVerificationCode = async() => {
                 <option value="1">Tələbə</option>
                 <option value="2">Makler</option>
               </select>
+              {errors.userType && <div className="error">{errors.userType}</div>}
             </div>
             <div className="form-group">
               <label className="form-label">Cins</label>
@@ -222,6 +270,7 @@ const sendVerificationCode = async() => {
                 <option value="0">Kişi</option>
                 <option value="1">Qadın</option>
               </select>
+              {errors.gender && <div className="error">{errors.gender}</div>}
             </div>
             <div className="form-group">
               <label className="form-label">Doğum tarixi</label>
@@ -233,6 +282,7 @@ const sendVerificationCode = async() => {
                 className="form-input"
                 required
               />
+              {errors.dateOfBirth && <div className="error">{errors.dateOfBirth}</div>}
             </div>
           </>
         )
