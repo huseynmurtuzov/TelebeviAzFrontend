@@ -85,7 +85,7 @@ export default function Navigation() {
             Necə işləyir
           </a>
         </div>
-        <div className="mobile-menu-buttons">
+        <div className="mobile-menu-buttons" style={{marginBottom:"10px"}}>
           <a className="mobile-cta-button" href="/login" onClick={() => setIsMobileMenuOpen(false)}>
             Login
           </a>
