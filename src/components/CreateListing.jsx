@@ -80,7 +80,7 @@ const CreateListing = () => {
   }
 
   // onlyFor: required
-  if (!formData.onlyFor) {
+  if (formData.onlyFor.length == 0) {
     newErrors.onlyFor = "Kim üçün olduğu seçilməlidir";
   }
 
