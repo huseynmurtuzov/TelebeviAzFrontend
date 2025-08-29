@@ -55,7 +55,7 @@ export default function UserListingCard({ listing, onEdit, onDelete }) {
       <div className="card-content">
         <div className="card-header">
             <div className="card-inner-header">
-              <h4 className="card-title" style={{cursor:"pointer"}} onClick={() => navigate(`/rent-details/${listing.id}`)}>{listing.title}</h4>
+              <h4 className="card-title" style={{cursor:"pointer"}} onClick={() => navigate(`/rent-details/${listing.id}`)}>{listing.title.slice(0,12)}</h4>
             <p className="card-state">Durum:{listing.isActive ? <span className="card-active">Aktiv</span> : <span className="card-reviewing">Yoxlanılır</span>}</p>
             </div>
           <div className="card-menu" ref={menuRef}>
