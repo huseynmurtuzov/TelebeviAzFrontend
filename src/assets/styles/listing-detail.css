@@ -582,6 +582,12 @@
   padding: clamp(1rem, 2vw, 2rem);
 }
 
+@media (max-width: 767px) {
+  .carousel-main-image {
+    object-fit: contain;
+    background: #f8f9fa;
+  }
+}
 .fullscreen-content {
   position: relative;
   max-width: 90vw;
