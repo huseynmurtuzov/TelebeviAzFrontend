@@ -393,6 +393,7 @@ const UpdateListingComponent = () => {
                     placeholder="Məsələn: Şəhər mərkəzində 2 otaqlı mənzil"
                     required
                   />
+                  {errors.title && <div className="error">{errors.title}</div>}
                 </div>
                 <div className="form-group full-width">
                   <label htmlFor="description">Təsvir *</label>
@@ -405,6 +406,7 @@ const UpdateListingComponent = () => {
                     rows="4"
                     required
                   />
+                  {errors.description && <div className="error">{errors.description}</div>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="price">Qiymət (AZN) *</label>
@@ -417,7 +419,9 @@ const UpdateListingComponent = () => {
                     placeholder="500"
                     min="0"
                     required
-                  />
+                  />                  
+                  {errors.price && <div className="error">{errors.price}</div>}
+
                 </div>
                 <div className="form-group">
                   <label htmlFor="area">Sahə (m²) *</label>
@@ -431,6 +435,7 @@ const UpdateListingComponent = () => {
                     min="1"
                     required
                   />
+                  {errors.area && <div className="error">{errors.area}</div>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="roomCount">Otaq Sayı *</label>
@@ -445,6 +450,8 @@ const UpdateListingComponent = () => {
                     max="10"
                     required
                   />
+                  {errors.roomCount && <div className="error">{errors.roomCount}</div>}
+
                 </div>
               </div>
             </div>
@@ -464,6 +471,8 @@ const UpdateListingComponent = () => {
                     placeholder="Bakı"
                     required
                   />
+                  {errors.city && <div className="error">{errors.city}</div>}
+
                 </div>
                 <div className="form-group">
                   <label htmlFor="district">Rayon *</label>
@@ -476,6 +485,7 @@ const UpdateListingComponent = () => {
                     placeholder="Nəsimi"
                     required
                   />
+                  {errors.district && <div className="error">{errors.district}</div>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="location">Məkan *</label>
@@ -495,6 +505,7 @@ const UpdateListingComponent = () => {
                       </option>
                     ))}
                   </select>
+                  {errors.location && <div className="error">{errors.location}</div>}
                 </div>
                 <div className="form-group full-width">
                   <label htmlFor="address">Tam Ünvan *</label>
@@ -508,6 +519,7 @@ const UpdateListingComponent = () => {
                     required
                   />
                 </div>
+                {errors.address && <div className="error">{errors.address}</div>}
               </div>
             </div>
 
@@ -530,13 +542,14 @@ const UpdateListingComponent = () => {
                     </label>
                   ))}
                 </div>
+                {errors.onlyFor && <div className="error">{errors.onlyFor}</div>}
               </div>
             </div>
 
             {/* Submit Button */}
             <div className="form-actions">
               <button type="submit" className="submit-btn">
-                İlanı Dərc Et
+                Elanı yenilə
               </button>
             </div>
           </form>

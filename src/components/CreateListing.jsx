@@ -22,7 +22,82 @@ const CreateListing = () => {
     area: "",
     photos: [],
   })
+  const [errors, setErrors] = useState({})
+ const validateListing = () => {
+  let newErrors = {};
+  // Title: required, max 100 char
+  if (!formData.title) {
+    newErrors.title = "Başlıq boş ola bilməz";
+  } else if (formData.title.length > 100) {
+    newErrors.title = "Başlıq 100 simvoldan uzun olmamalıdır";
+  }
 
+  // Description: required
+  if (!formData.description) {
+    newErrors.description = "Açıqlama boş ola bilməz";
+  }
+
+  // Price: required, number, > 0
+  if (!formData.price) {
+    newErrors.price = "Qiymət boş ola bilməz";
+  } else if (isNaN(Number(formData.price))) {
+    newErrors.price = "Qiymət rəqəm olmalıdır";
+  } else if (Number(formData.price) < 1) {
+    newErrors.price = "Qiymət 1-dən kiçik ola bilməz";
+  }
+
+  // City: required, max 50 char
+  if (!formData.city) {
+    newErrors.city = "Şəhər boş ola bilməz";
+  } else if (formData.city.length > 50) {
+    newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
+  }
+
+  // District: required, max 50 char
+  if (!formData.district) {
+    newErrors.district = "Rayon boş ola bilməz";
+  } else if (formData.district.length > 50) {
+    newErrors.district = "Rayon adı 50 simvoldan uzun olmamalıdır";
+  }
+
+  // Address: required
+  if (!formData.address) {
+    newErrors.address = "Ünvan boş ola bilməz";
+  }
+
+  // Location: required
+  if (!formData.location) {
+    newErrors.location = "Location boş ola bilməz";
+  }
+
+  // Room count: required, number, > 0
+  if (!formData.roomCount) {
+    newErrors.roomCount = "Otaq sayı boş ola bilməz";
+  } else if (isNaN(Number(formData.roomCount))) {
+    newErrors.roomCount = "Otaq sayı rəqəm olmalıdır";
+  } else if (Number(formData.roomCount) < 1) {
+    newErrors.roomCount = "Otaq sayı 1-dən az ola bilməz";
+  }
+
+  // onlyFor: required
+  if (!formData.onlyFor) {
+    newErrors.onlyFor = "Kim üçün olduğu seçilməlidir";
+  }
+
+  // Area: required, number, > 0
+  if (!formData.area) {
+    newErrors.area = "Sahə boş ola bilməz";
+  } else if (isNaN(Number(formData.area))) {
+    newErrors.area = "Sahə rəqəm olmalıdır";
+  } else if (Number(formData.area) < 1) {
+    newErrors.area = "Sahə 1-dən az ola bilməz";
+  }
+
+  // photos: optional, yoxlama yoxdur
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
   
 
 
@@ -143,6 +218,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
 
   const handleSubmit =  async(e) => {
     e.preventDefault()
+    if (!validateListing()) return;
     setLoading(true);
       try {
         const response = await handleSubmitFunction();
@@ -222,6 +298,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   placeholder="Məsələn: Şəhər mərkəzində 2 otaqlı mənzil"
                   required
                 />
+                {errors.title && <div className="error">{errors.title}</div>}
               </div>
 
               <div className="form-group full-width">
@@ -235,6 +312,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   rows="4"
                   required
                 />
+                {errors.description && <div className="error">{errors.description}</div>}
               </div>
 
               <div className="form-group">
@@ -249,6 +327,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   min="0"
                   required
                 />
+                {errors.price && <div className="error">{errors.price}</div>}
               </div>
 
               <div className="form-group">
@@ -263,6 +342,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   min="1"
                   required
                 />
+                {errors.area && <div className="error">{errors.area}</div>}
               </div>
 
               <div className="form-group">
@@ -278,6 +358,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   max="10"
                   required
                 />
+                {errors.roomCount && <div className="error">{errors.roomCount}</div>}
               </div>
             </div>
           </div>
@@ -297,6 +378,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   placeholder="Bakı"
                   required
                 />
+                {errors.city && <div className="error">{errors.city}</div>}
               </div>
 
               <div className="form-group">
@@ -310,6 +392,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   placeholder="Nəsimi"
                   required
                 />
+                {errors.district && <div className="error">{errors.district}</div>}
               </div>
 
               <div className="form-group">
@@ -325,6 +408,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                         </option>
                     ))}
                     </select>
+                    {errors.location && <div className="error">{errors.location}</div>}
               </div>
 
               <div className="form-group full-width">
@@ -338,6 +422,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                   placeholder="Məsələn: Nizami küçəsi 123, mənzil 45"
                   required
                 />
+                {errors.address && <div className="error">{errors.address}</div>}
               </div>
             </div>
           </div>
@@ -367,13 +452,14 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
         </label>
       ))}
     </div>
+    {errors.onlyFor && <div className="error">{errors.onlyFor}</div>}
   </div>
 </div>
 
           {/* Submit Button */}
           <div className="form-actions">
             <button type="submit" className="submit-btn" onClick={handleSubmit}>
-              İlanı Dərc Et
+              Elanı Dərc Et
             </button>
           </div>
         </form>
