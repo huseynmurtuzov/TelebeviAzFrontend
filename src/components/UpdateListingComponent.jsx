@@ -316,7 +316,7 @@ const UpdateListingComponent = () => {
 
       if (response.status === 200 || response.status === 201) {
         showInfo("Elan yeniləndi");
-        navigate("/listings");
+        navigate("/profile");
       }
     } catch (err) {
       showError(err.response?.data?.message || "Xəta baş verdi!");

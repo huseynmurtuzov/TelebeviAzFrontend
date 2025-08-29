@@ -188,7 +188,7 @@ const UserProfileEdit = () => {
             <button type="button" className="btn-cancel" onClick={() => navigate("/profile")}>
               Ləğv et
             </button>
-            <button type="submit" className="btn-save" disabled={isLoading}>
+            <button type="submit" onClick={handleSubmit} className="btn-save" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <div className="loading-spinner"></div>
