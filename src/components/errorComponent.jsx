@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import "../assets/styles/errorComponent.css"
+import { useNotification } from './context/NotificationContext';
 function ErrorComponent({ text,errorkey }) {
   const [visible, setVisible] = useState(false);
+  const {showError} = useNotification();
 
   useEffect(() => {
     if (text) {
       setVisible(true);
-      const timer = setTimeout(() => setVisible(false), 3000);
+      const timer = setTimeout(() => {
+        setVisible(false)
+        showError("")
+      }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [errorkey]); 
+  }, [errorkey,text]); 
 
   if (!visible) return null;
 
