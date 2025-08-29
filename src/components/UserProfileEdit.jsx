@@ -36,7 +36,6 @@ const UserProfileEdit = () => {
       newErrors.surname = "Soyad ən az 3 hərfdən ibarət olmalıdır";
     }
 
-    if (!formData.email || !formData.email.includes("@")) newErrors.email = "Düzgün email daxil edin";
       if (!formData.phoneNumber || !/^\d{9,10}$/.test(formData.phoneNumber)) newErrors.phoneNumber = "Telefon nömrəsi 9 və ya 10 rəqəm olmalıdır";
   
     setErrors(newErrors);
@@ -188,7 +187,7 @@ const UserProfileEdit = () => {
             <button type="button" className="btn-cancel" onClick={() => navigate("/profile")}>
               Ləğv et
             </button>
-            <button type="submit" onClick={handleSubmit} className="btn-save" disabled={isLoading}>
+            <button type="submit" className="btn-save" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <div className="loading-spinner"></div>
