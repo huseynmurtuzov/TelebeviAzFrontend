@@ -66,7 +66,7 @@ const CreateListing = () => {
   }
 
   // Location: required
-  if (selectedLocation) {
+  if (!selectedLocation) {
     newErrors.location = "Location boş ola bilməz";
   }
 
