@@ -224,7 +224,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
         const response = await handleSubmitFunction();
         if(response.status == 200 || response.status == 201){
             showInfo("Elan paylaşıldı");
-            navigate("/listings")
+            navigate("/profile")
         }
       } catch (err) {
         if (err.response && err.response.data) {
