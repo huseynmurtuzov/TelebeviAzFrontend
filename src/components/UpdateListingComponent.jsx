@@ -7,6 +7,7 @@ import { useNotification } from "./context/NotificationContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate, useParams } from "react-router-dom";
 import BackArrow from "./BackArrow";
+import { Helmet } from "react-helmet";
 
 const locations = [
   "Yeni Yasamal",
@@ -331,6 +332,9 @@ const UpdateListingComponent = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Elan yenilə</title>
+      </Helmet>
       <BackArrow url={"/listings"} />
       <div className="create-listing">
         <div className="create-listing-container">

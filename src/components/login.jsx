@@ -9,6 +9,7 @@ import { useNotification } from "./context/NotificationContext"
 import api from "../api"
 import Register from "./register"
 import PasswordInput from "./PasswordInput"
+import { Helmet } from "react-helmet"
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -73,6 +74,9 @@ export default function Login() {
   }
   return (
     <div>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
         <Navigation/>
         <div className="login-container">
       <div className="login-card">

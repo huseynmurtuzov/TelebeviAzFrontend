@@ -7,7 +7,7 @@ import { useNotification } from "./context/NotificationContext"
 import {jwtDecode} from 'jwt-decode'
 import { useNavigate } from "react-router-dom"
 import BackArrow from "./BackArrow"
-
+import { Helmet } from "react-helmet"
 const CreateListing = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -245,6 +245,9 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
 
   return (
     <div>
+       <Helmet>
+        <title>Yeni elan yarat</title>
+      </Helmet>
       <BackArrow url={"/listings"}/>
       <div className="create-listing">
       <div className="create-listing-container">

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import api from "../api"
 import UserListingCard from "../components/UserListingCard"
 import UserFavoriteListingCard from "./UserFavoriteListingCard"
+import { Helmet } from "react-helmet"
 
 export default function Profile() {
   const [userProfile, setUserProfile] = useState({})
@@ -134,6 +135,9 @@ const handleDeleteListing = async (listing) => {
 
   return (
     <div>
+      <Helmet>
+        <title>Profil</title>
+      </Helmet>
       {isLoggedIn ? <NavigationAfterLogin/> : <Navigation/>}
       <div className="profile-page">
       <div className="profile-container">

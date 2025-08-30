@@ -9,6 +9,7 @@ import NavigationAfterLogin from './NavigationAfterLogin';
 import Navigation from './navigation';
 import Footer from './footer';
 import defaultProfile from "../assets/placeholder-user.jpg"
+import { Helmet } from 'react-helmet';
 const ListingDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -113,6 +114,9 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
 
   return (
     <>
+    <Helmet>
+        <title>Elan haqqında</title>
+      </Helmet>
     {isLoggedIn ? <NavigationAfterLogin/> : <Navigation/>}
     <div className="listing-detail">
       {/* Image Carousel */}

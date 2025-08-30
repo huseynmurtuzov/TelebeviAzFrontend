@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
 import BackArrow from "./BackArrow"
 import PasswordInput from "./PasswordInput"
-
+import { Helmet } from "react-helmet"
 
 
 
@@ -335,6 +335,9 @@ const sendVerificationCode = async() => {
   return (
     <div>
       <BackArrow url={"/"}/>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <div className="register-container">
       <div className="register-card">
         <h1 className="register-title">Hesab yaradın</h1>
