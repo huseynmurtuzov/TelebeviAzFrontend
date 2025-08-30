@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import SearchBar from "./search-bar"
+// import { Link } from "react-router-dom"
+// import SearchBar from "./search-bar"
 import "../assets/styles/navigation.css"
 import logo from '../assets/logo.png'
 

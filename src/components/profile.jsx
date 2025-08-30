@@ -10,7 +10,7 @@ import {jwtDecode} from 'jwt-decode'
 import { useNavigate } from "react-router-dom"
 import api from "../api"
 import UserListingCard from "../components/UserListingCard"
-import UserFavoriteListingCard from "./UserFavoriteListingCard"
+// import UserFavoriteListingCard from "./UserFavoriteListingCard"
 import { Helmet } from "react-helmet"
 
 export default function Profile() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/listing-detail.css';
-import logo from '../assets/logo.png'
+// import logo from '../assets/logo.png'
 import { useParams } from 'react-router-dom';
 import { useNotification } from './context/NotificationContext';
 import { useEffect } from 'react';

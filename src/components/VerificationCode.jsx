@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react"
 import "../assets/styles/VerificationCode.css"
 import api from "../api"
 import { useLocation, useNavigate } from "react-router-dom";
-import LoadingScreen from "./loadingScreen";
-import ErrorComponent from "./errorComponent";
+// import LoadingScreen from "./loadingScreen";
+// import ErrorComponent from "./errorComponent";
 import { useNotification } from "./context/NotificationContext";
 export default function VerificationCode({ onSubmit, onCodeChange }) {
   const [code, setCode] = useState(["", "", "", "", "", ""])

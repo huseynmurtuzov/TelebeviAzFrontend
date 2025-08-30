@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react"
 import "../assets/styles/register.css"
-import LoadingScreen from "./loadingScreen"
-import ErrorComponent from '../components/errorComponent'
+// import LoadingScreen from "./loadingScreen"
+// import ErrorComponent from '../components/errorComponent'
 import api from "../api"
 import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"

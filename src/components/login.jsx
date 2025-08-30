@@ -7,7 +7,7 @@ import Footer from "./footer"
 import { useNavigate } from "react-router-dom"
 import { useNotification } from "./context/NotificationContext"
 import api from "../api"
-import Register from "./register"
+// import Register from "./register"
 import PasswordInput from "./PasswordInput"
 import { Helmet } from "react-helmet"
 
