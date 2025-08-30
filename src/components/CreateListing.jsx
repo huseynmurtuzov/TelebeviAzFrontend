@@ -93,8 +93,12 @@ const CreateListing = () => {
     newErrors.area = "Sahə 1-dən az ola bilməz";
   }
 
-  // photos: optional, yoxlama yoxdur
+  if(formData.photos.length > 10){
+    newErrors.photos = "10-dan çox şəkil yükləmək olmaz"
+  }
 
+  // photos: optional, yoxlama yoxdur
+ 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
 };
@@ -281,6 +285,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                 ))}
               </div>
             )}
+            {errors.photos && <div className="error">{errors.photos}</div>}
           </div>
 
           {/* Basic Information */}
