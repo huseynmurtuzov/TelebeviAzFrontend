@@ -179,7 +179,7 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
                 <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2"/>
                 <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
               </svg>
-              <span>{new Date(property?.createdAt).getUTCDay() + "/" +new Date(property?.createdAt).getUTCMonth() + "/" +new Date(property?.createdAt).getUTCFullYear()}</span>
+              <span>{new Date(property?.createdAt).getUTCDate() + "/" +(new Date(property?.createdAt).getUTCMonth() +1) + "/" +new Date(property?.createdAt).getUTCFullYear()}</span>
               
             </div>
           </div>
