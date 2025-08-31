@@ -60,7 +60,8 @@ export default function Filters({sendDataToParent}) {
   "Bayıl",
   "Badamdar",
   "Masazır",
-  "Biləcəri"
+  "Biləcəri",
+  "Xırdalan"
 ];
 
   const handleRoomSelect = (rooms) => {

@@ -42,7 +42,8 @@ const locations = [
   "Bayıl",
   "Badamdar",
   "Masazır",
-  "Biləcəri"
+  "Biləcəri",
+  "Xırdalan"
 ];
 const genders = ["Kişi", "Qadın", "Fərqi yoxdur"];
 

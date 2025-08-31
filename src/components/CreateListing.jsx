@@ -142,7 +142,8 @@ const CreateListing = () => {
   "Bayıl",
   "Badamdar",
   "Masazır",
-  "Biləcəri"
+  "Biləcəri",
+  "Xırdalan"
 ];
 const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn } = useNotification();
