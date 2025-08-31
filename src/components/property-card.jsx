@@ -40,7 +40,7 @@ export default function PropertyCard({ property }) {
       <div className="property-content">
         <h3 className="property-title">{property.title}</h3>
         <div className="property-details">
-          <span className="detail-item">{property.description}</span>
+          {/* <span className="detail-item">{property.description}</span> */}
           {/* <span className="detail-separator">•</span> */}
           <span className="detail-item">{property.city} şəhəri</span>
           <span className="detail-separator">•</span>
