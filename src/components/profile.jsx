@@ -149,7 +149,7 @@ const handleDeleteListing = async (listing) => {
           <div className="profile-info">
             <h1 className="profile-name">{userProfile.name + " " + userProfile.surName}</h1>
             {/* <p className="profile-university">{userProfile.university}</p> */}
-            <p className="profile-email">{userProfile.email}</p>
+            {/* <p className="profile-email">{userProfile.email}</p> */}
             
           </div>
           <button className="edit-profile-button" onClick={handleEditProfile}>
