@@ -109,6 +109,7 @@ export default function RentalListings() {
           </div>
 
           <div className="properties-grid">
+            {listings?.length == 0 && <p>Qeyd etdiyiniz filtrə uyğun elan tapılmadı</p>}
             {listings?.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
