@@ -66,9 +66,9 @@ const CreateListing = () => {
   }
 
   // Location: required
-  if (!selectedLocation) {
-    newErrors.location = "Location boş ola bilməz";
-  }
+  if (selectedLocation === "" || selectedLocation === null || selectedLocation === undefined) {
+  newErrors.location = "Location boş ola bilməz";
+}
 
   // Room count: required, number, > 0
   if (!formData.roomCount) {
