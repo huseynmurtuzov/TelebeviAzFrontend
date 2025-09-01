@@ -22,6 +22,9 @@ export default function Profile() {
   if(userProfile == {}){
     setLoading(true)
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const token = localStorage.getItem("accessToken");
   let userId;
