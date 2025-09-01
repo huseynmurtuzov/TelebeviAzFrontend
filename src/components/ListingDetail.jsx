@@ -28,6 +28,10 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
     return await api.get(`/Listing/${id}`);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
 
  useEffect(() => {
   const fetchListing = async () => {
