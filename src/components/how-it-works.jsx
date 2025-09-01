@@ -72,10 +72,10 @@ const HowItWorks = () => {
         <div className="demo-section" >
           <h3 className="demo-title" >Demoyu izləyin</h3>
           <p className="demo-description">2 dəqiqəlik videoda bütün prosesi görün</p>
-          <button className="demo-button">
+          <a href="https://youtube.com/shorts/z3XsS1J3DRk?si=0bcVMnIYS7WbhbQT" target="_blank" className="demo-button">
             <span className="play-icon" >▶</span>
             Demo Videonu İzlə
-          </button>
+          </a>
         </div>
       </div>
     </section>

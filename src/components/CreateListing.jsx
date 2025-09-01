@@ -147,7 +147,7 @@ const CreateListing = () => {
 ];
 const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn } = useNotification();
-  const [selectedLocation, setSelectedLocation] = useState()
+  const [selectedLocation, setSelectedLocation] = useState("")
   const navigate = useNavigate();
 
   const token = localStorage.getItem("accessToken");
