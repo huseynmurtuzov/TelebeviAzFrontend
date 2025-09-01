@@ -506,9 +506,7 @@ const UpdateListingComponent = () => {
                     value={formData.location}
                     onChange={handleInputChange}
                   >
-                    <option value="" disabled>
-                      Seç
-                    </option>
+                    <option value={null} selected disabled>Seç</option>
                     {locations.map((location, idx) => (
                       <option value={idx} key={idx}>
                         {location}

@@ -410,7 +410,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
                     value={selectedLocation}
                     onChange={e => setSelectedLocation(Number(e.target.value))}
                     >
-                    <option value="" disabled>Seç</option>
+                    <option value={null} selected disabled>Seç</option>
                     {locations.map((location, idx) => (
                         <option value={idx} key={idx}>
                         {location}
