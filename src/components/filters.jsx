@@ -12,7 +12,7 @@ export default function Filters({sendDataToParent}) {
   const [selectedAreas, setSelectedAreas] = useState(null)
   const [priceRange, setPriceRange] = useState([0, 2000])
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn,setListings,listings,currentPage } = useNotification();
-  const [selectedLocation, setSelectedLocation] = useState(null)
+  const [selectedLocation, setSelectedLocation] = useState("")
     const pageSize = 4
 
   
@@ -140,17 +140,20 @@ export default function Filters({sendDataToParent}) {
 
       <div className="filter-section">
         <h3 className="filter-label">Məkan</h3>
-        <select className="location-select" name="location" id="location"
-        value={selectedLocation}
-        onChange={e => setSelectedLocation(Number(e.target.value))}
-        >
-          <option value={null} disabled selected>Seç</option>
-          {locations.map((location, idx) => (
-            <option value={idx} key={idx}>
-              {location}
-            </option>
-          ))}
-        </select>
+        <select
+    className="location-select"
+    name="location"
+    id="location"
+    value={selectedLocation}
+    onChange={e => setSelectedLocation(e.target.value)}
+  >
+    <option value="" disabled>Seç</option>
+    {locations.map((location, idx) => (
+      <option value={idx} key={idx}>
+        {location}
+      </option>
+    ))}
+  </select>
       </div>
 
       <div className="filter-section">
