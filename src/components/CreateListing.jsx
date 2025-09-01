@@ -25,19 +25,16 @@ const CreateListing = () => {
   const [errors, setErrors] = useState({})
  const validateListing = () => {
   let newErrors = {};
-  // Title: required, max 100 char
   if (!formData.title) {
     newErrors.title = "Başlıq boş ola bilməz";
   } else if (formData.title.length > 100) {
     newErrors.title = "Başlıq 100 simvoldan uzun olmamalıdır";
   }
 
-  // Description: required
   if (!formData.description) {
     newErrors.description = "Açıqlama boş ola bilməz";
   }
 
-  // Price: required, number, > 0
   if (!formData.price) {
     newErrors.price = "Qiymət boş ola bilməz";
   } else if (isNaN(Number(formData.price))) {
@@ -46,31 +43,26 @@ const CreateListing = () => {
     newErrors.price = "Qiymət 1-dən kiçik ola bilməz";
   }
 
-  // City: required, max 50 char
   if (!formData.city) {
     newErrors.city = "Şəhər boş ola bilməz";
   } else if (formData.city.length > 50) {
     newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
   }
 
-  // District: required, max 50 char
   if (!formData.district) {
     newErrors.district = "Rayon boş ola bilməz";
   } else if (formData.district.length > 50) {
     newErrors.district = "Rayon adı 50 simvoldan uzun olmamalıdır";
   }
 
-  // Address: required
   if (!formData.address) {
     newErrors.address = "Ünvan boş ola bilməz";
   }
 
-  // Location: required
   if (selectedLocation === "") {
   newErrors.location = "Location boş ola bilməz";
 }
 
-  // Room count: required, number, > 0
   if (!formData.roomCount) {
     newErrors.roomCount = "Otaq sayı boş ola bilməz";
   } else if (isNaN(Number(formData.roomCount))) {
@@ -79,12 +71,10 @@ const CreateListing = () => {
     newErrors.roomCount = "Otaq sayı 1-dən az ola bilməz";
   }
 
-  // onlyFor: required
   if (formData.onlyFor.length == 0) {
     newErrors.onlyFor = "Kim üçün olduğu seçilməlidir";
   }
 
-  // Area: required, number, > 0
   if (!formData.area) {
     newErrors.area = "Sahə boş ola bilməz";
   } else if (isNaN(Number(formData.area))) {
@@ -97,7 +87,6 @@ const CreateListing = () => {
     newErrors.photos = "10-dan çox şəkil yükləmək olmaz"
   }
 
-  // photos: optional, yoxlama yoxdur
  
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
@@ -191,7 +180,6 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   const handleSubmitFunction = async () => {
   const sendingformData = new FormData();
 
-  // Text ve number alanlarını ekle
   sendingformData.append("title", formData.title);
   sendingformData.append("description", formData.description);
   sendingformData.append("price", parseFloat(formData.price));
@@ -204,15 +192,12 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   sendingformData.append("userId", parseInt(userId));
   sendingformData.append("isActive", false);
   sendingformData.append("listingView", 0);
-  // Eğer onlyFor bir array ise şöyle ekle
   sendingformData.append("onlyFor", genders.indexOf(formData.onlyFor));
 
-  // Fotoğrafları ekle
   for (const file of formData.photos) {
-    sendingformData.append("images", file); // backend'de parameter ismi 'images' olmalı
+    sendingformData.append("images", file); 
   }
 
-  // Request gönder
   return await api.post("/Listing", sendingformData, {
     headers: {
       "Content-Type": "multipart/form-data",

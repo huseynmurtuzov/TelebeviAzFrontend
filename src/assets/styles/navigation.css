@@ -70,7 +70,6 @@
   color: #111827;
 }
 
-/* Added nav-right container for desktop and mobile buttons */
 .nav-right {
   display: flex;
   align-items: center;
@@ -112,7 +111,6 @@
   transform: translateY(-1px);
 }
 
-/* Added mobile menu button styles */
 .mobile-menu-button {
   display: flex;
   flex-direction: column;
@@ -160,7 +158,6 @@
   transform: rotate(-45deg) translate(4px, -4px);
 }
 
-/* Added mobile menu styles */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -238,12 +235,10 @@
   z-index: 999;
 }
 
-/* Smooth scroll behavior for the entire page */
 html {
   scroll-behavior: smooth;
 }
 
-/* Add padding to body when navbar becomes fixed to prevent content jump */
 body.navbar-fixed {
   padding-top: 70px;
 }

@@ -23,10 +23,8 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
       newCode[index] = sanitizedValue
       setCode(newCode)
 
-      // Call onCodeChange callback
       onCodeChange?.(newCode.join(""))
 
-      // Move to next input if current input is filled
       if (sanitizedValue && index < 5) {
         inputRefs.current[index + 1]?.focus()
       }
@@ -35,7 +33,6 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
 
   const handleKeyDown = (index, e) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
-      // Move to previous input on backspace if current input is empty
       inputRefs.current[index - 1]?.focus()
     }
   }
@@ -55,7 +52,6 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
       setCode(newCode)
       onCodeChange?.(newCode.join(""))
 
-      // Focus the next empty input or the last input
       const nextEmptyIndex = newCode.findIndex((char) => char === "")
       const focusIndex = nextEmptyIndex === -1 ? 5 : Math.min(nextEmptyIndex, 5)
       inputRefs.current[focusIndex]?.focus()
@@ -75,7 +71,6 @@ export default function VerificationCode({ onSubmit, onCodeChange }) {
   }
 
   useEffect(() => {
-    // Focus first input on mount
     inputRefs.current[0]?.focus()
   }, [])
 

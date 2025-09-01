@@ -1,17 +1,17 @@
 .addToBasket {
   position: fixed;
-  /* Ortada və yuxarıda */
-  top: 40px; /* yuxarıdan məsafə */
+
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #17a2b8; /* Yaşıl success rəngi */
+  background-color: #17a2b8;
   color: white;
   padding: 15px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   text-align: center;
-  z-index: 9999; /* Overlay-lar üçün əlavə et */
+  z-index: 9999;
   min-width: 280px;
   border-radius: 8px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.15);

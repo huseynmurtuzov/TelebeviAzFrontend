@@ -17,9 +17,7 @@ function Homepage() {
         {isLoggedIn ? <NavigationAfterLogin/> : <Navigation/>}
         <Hero />
         <WhyTelebevi />
-        {/* <BestChoice /> */}
         <HowItWorks />
-        {/* <SimpleEffective /> */}
         <Footer />
         {isLoggedIn && <FloatingActionButton />}
     </div>

@@ -221,7 +221,6 @@
   font-size: 1rem;
 }
 
-/* Enhanced responsive breakpoints for pixel-perfect design */
 @media (max-width: 1200px) {
   .step-card {
     gap: 1.75rem;
@@ -297,7 +296,6 @@
   }
 }
 
-/* Landscape orientation optimizations */
 @media (max-height: 600px) and (orientation: landscape) {
   .how-it-works {
     padding: 2rem 0;
@@ -317,7 +315,6 @@
   }
 }
 
-/* Large screen optimizations */
 @media (min-width: 1400px) {
   .step-card {
     max-width: 1000px;

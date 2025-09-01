@@ -69,19 +69,16 @@ const UpdateListingComponent = () => {
 
   const validateListing = () => {
   let newErrors = {};
-  // Title: required, max 100 char
   if (!formData.title) {
     newErrors.title = "Başlıq boş ola bilməz";
   } else if (formData.title.length > 100) {
     newErrors.title = "Başlıq 100 simvoldan uzun olmamalıdır";
   }
 
-  // Description: required
   if (!formData.description) {
     newErrors.description = "Açıqlama boş ola bilməz";
   }
 
-  // Price: required, number, > 0
   if (!formData.price) {
     newErrors.price = "Qiymət boş ola bilməz";
   } else if (isNaN(Number(formData.price))) {
@@ -90,31 +87,26 @@ const UpdateListingComponent = () => {
     newErrors.price = "Qiymət 1-dən kiçik ola bilməz";
   }
 
-  // City: required, max 50 char
   if (!formData.city) {
     newErrors.city = "Şəhər boş ola bilməz";
   } else if (formData.city.length > 50) {
     newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
   }
 
-  // District: required, max 50 char
   if (!formData.district) {
     newErrors.district = "Rayon boş ola bilməz";
   } else if (formData.district.length > 50) {
     newErrors.district = "Rayon adı 50 simvoldan uzun olmamalıdır";
   }
 
-  // Address: required
   if (!formData.address) {
     newErrors.address = "Ünvan boş ola bilməz";
   }
 
-  // Location: required
   if (!formData.location) {
     newErrors.location = "Location boş ola bilməz";
   }
 
-  // Room count: required, number, > 0
   if (!formData.roomCount) {
     newErrors.roomCount = "Otaq sayı boş ola bilməz";
   } else if (isNaN(Number(formData.roomCount))) {
@@ -123,12 +115,10 @@ const UpdateListingComponent = () => {
     newErrors.roomCount = "Otaq sayı 1-dən az ola bilməz";
   }
 
-  // onlyFor: required
   if (!formData.onlyFor) {
     newErrors.onlyFor = "Kim üçün olduğu seçilməlidir";
   }
 
-  // Area: required, number, > 0
   if (!formData.area) {
     newErrors.area = "Sahə boş ola bilməz";
   } else if (isNaN(Number(formData.area))) {
@@ -141,7 +131,6 @@ const UpdateListingComponent = () => {
     newErrors.photos = "10-dan çox şəkil yükləmək olmaz"
   }
 
-  // photos: optional, yoxlama yoxdur
 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
@@ -175,7 +164,6 @@ const UpdateListingComponent = () => {
     if (listingId) fetchImages();
   }, [listingId]);
 
-  // Elan məlumatını çək
   useEffect(() => {
     const fetchListing = async () => {
       setLoading(true);
@@ -206,7 +194,6 @@ const UpdateListingComponent = () => {
 
 
 
-  // Şəkilləri çək
   useEffect(() => {
     const fetchImages = async () => {
       setLoading(true);
@@ -228,7 +215,6 @@ const UpdateListingComponent = () => {
 
 
 
-  // Input dəyişiklikləri
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -238,7 +224,6 @@ const UpdateListingComponent = () => {
     setErrors({})
   };
 
-  // Radio dəyişiklikləri
   const handleRadioChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -246,7 +231,6 @@ const UpdateListingComponent = () => {
     }));
   };
 
-  // Location dəyiş
   // const handleLocationChange = (e) => {
   //   setSelectedLocation(Number(e.target.value));
   //   setFormData((prev) => ({
@@ -255,7 +239,6 @@ const UpdateListingComponent = () => {
   //   }));
   // };
 
-  // Şəkil yüklə
   const handlePhotoUpload = (e) => {
     const files = Array.from(e.target.files);
     setFormData((prev) => ({

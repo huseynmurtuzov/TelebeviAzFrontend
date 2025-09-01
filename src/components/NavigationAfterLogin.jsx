@@ -29,7 +29,6 @@ const navigate = useNavigate();
 
       setIsScrolled(shouldBeScrolled)
 
-      // Add/remove body class to prevent content jump
       if (shouldBeScrolled) {
         document.body.classList.add("navbar-fixed")
       } else {
@@ -39,7 +38,6 @@ const navigate = useNavigate();
 
     window.addEventListener("scroll", handleScroll)
 
-    // Check initial scroll position
     handleScroll()
 
     return () => {

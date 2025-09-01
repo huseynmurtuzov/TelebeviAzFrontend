@@ -50,7 +50,6 @@ api.interceptors.response.use(
           throw new Error("No refresh token found");
         }
 
-        // Refresh JWT request
         const res = await axios.post(
           import.meta.env.VITE_API_URL+"/Account/refreshJwt",
           { refreshToken: refreshToken },

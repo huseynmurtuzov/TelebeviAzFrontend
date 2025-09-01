@@ -4,7 +4,6 @@ export default function AcceptAllCookies() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Əgər artıq qəbul edilibsə, göstərmə
     if (!localStorage.getItem("cookiesAccepted")) {
       setVisible(true);
     }

@@ -15,7 +15,6 @@ export default function Navigation() {
 
       setIsScrolled(shouldBeScrolled)
 
-      // Add/remove body class to prevent content jump
       if (shouldBeScrolled) {
         document.body.classList.add("navbar-fixed")
       } else {
@@ -25,7 +24,6 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll)
 
-    // Check initial scroll position
     handleScroll()
 
     return () => {

@@ -28,7 +28,6 @@ export default function BackArrow({ url }) {
       }}
       title="Geri"
     >
-      {/* SVG back arrow */}
       <svg
         width="22"
         height="22"

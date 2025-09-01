@@ -9,7 +9,6 @@
   margin: 0 auto;
 }
 
-/* Profile Header */
 .profile-header {
   background-color: white;
   border-radius: 12px;
@@ -71,7 +70,6 @@
   transform: translateY(-1px);
 }
 
-/* Profile Sections */
 .profile-section {
   background-color: white;
   border-radius: 12px;
@@ -87,7 +85,6 @@
   margin-bottom: 24px;
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -119,7 +116,6 @@
   margin: 0 auto 24px;
 }
 
-/* Action Buttons */
 .action-button {
   padding: 12px 24px;
   border-radius: 8px;
@@ -156,7 +152,6 @@
   transform: translateY(0);
 }
 
-/* Listings Grid Responsive */
 .listing-card-wrapper{
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -166,7 +161,6 @@
   margin-top: 12px;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .profile-container {
     max-width: 98vw;
