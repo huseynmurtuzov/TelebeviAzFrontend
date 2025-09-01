@@ -66,7 +66,7 @@ const CreateListing = () => {
   }
 
   // Location: required
-  if (selectedLocation === "" || selectedLocation === null || selectedLocation === undefined) {
+  if (selectedLocation === "") {
   newErrors.location = "Location boş ola bilməz";
 }
 
@@ -405,20 +405,23 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
               </div>
 
               <div className="form-group">
-                <label htmlFor="location">Məkan *</label>
-                 <select className="location-select" name="location" id="location"
-                    value={selectedLocation}
-                    onChange={e => setSelectedLocation(Number(e.target.value))}
-                    >
-                    <option value={null} selected disabled>Seç</option>
-                    {locations.map((location, idx) => (
-                        <option value={idx} key={idx}>
-                        {location}
-                        </option>
-                    ))}
-                    </select>
-                    {errors.location && <div className="error">{errors.location}</div>}
-              </div>
+  <label htmlFor="location">Məkan *</label>
+  <select
+    className="location-select"
+    name="location"
+    id="location"
+    value={selectedLocation}
+    onChange={e => setSelectedLocation(e.target.value)}
+  >
+    <option value="" disabled>Seç</option>
+    {locations.map((location, idx) => (
+      <option value={idx} key={idx}>
+        {location}
+      </option>
+    ))}
+  </select>
+  {errors.location && <div className="error">{errors.location}</div>}
+</div>
 
               <div className="form-group full-width">
                 <label htmlFor="address">Tam Ünvan *</label>
