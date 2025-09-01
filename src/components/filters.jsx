@@ -144,7 +144,7 @@ export default function Filters({sendDataToParent}) {
         value={selectedLocation}
         onChange={e => setSelectedLocation(Number(e.target.value))}
         >
-          <option value={null} disabled>Seç</option>
+          <option value={null} disabled selected>Seç</option>
           {locations.map((location, idx) => (
             <option value={idx} key={idx}>
               {location}
