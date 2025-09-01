@@ -123,7 +123,7 @@ export default function Filters({sendDataToParent}) {
 
   const handleFilterDelete = () => {
     setSelectedAreas(null)
-    setSelectedLocation(null)
+    setSelectedLocation("")
     setPriceRange([0,2000])
     setAmenities({onlyBoys:false,onlyGirls:false})
     setSelectedRooms(null)
