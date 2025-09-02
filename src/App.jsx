@@ -21,7 +21,7 @@ import UpdateListingComponent from "./components/UpdateListingComponent"
   export default function App() {
     return (
       <div>
-        <p>Yenilənmə işləri aparılır!</p>
+        <p>Saytda təmir işləri gedir!</p>
         {/* <BrowserRouter>
         <NotificationProvider>
           <GlobalStatus/>
