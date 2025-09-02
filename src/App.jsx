@@ -21,7 +21,8 @@ import UpdateListingComponent from "./components/UpdateListingComponent"
   export default function App() {
     return (
       <div>
-        <BrowserRouter>
+        <p>Yenilənmə işləri aparılır!</p>
+        {/* <BrowserRouter>
         <NotificationProvider>
           <GlobalStatus/>
         <Routes>
@@ -63,7 +64,7 @@ import UpdateListingComponent from "./components/UpdateListingComponent"
         </Routes>
         </NotificationProvider>
         <AcceptAllCookies />
-        </BrowserRouter>
+        </BrowserRouter> */}
       </div>
     )
   }
