@@ -180,12 +180,11 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
       } catch (error) {
         return file 
       }
-      finally{
-        setLoading(false)
-      }
+      
     })
+    
   )
-
+setLoading(false)
   setFormData((prev) => ({
     ...prev,
     photos: [...prev.photos, ...compressedFiles],
