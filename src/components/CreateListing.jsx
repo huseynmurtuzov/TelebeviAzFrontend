@@ -175,8 +175,17 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
         useWebWorker: true,
       }
       try {
-        const compressedFile = await imageCompression(file, options)
-        return compressedFile
+        const compressedBlob = await imageCompression(file, options)
+        const originalName = file.name
+        const extension = originalName.split('.').pop()
+        const baseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName
+
+        const finalFile = new File(
+          [compressedBlob],
+          `${baseName}.${extension}`,
+          { type: compressedBlob.type }
+        )
+        return finalFile
       } catch (error) {
         return file 
       }
