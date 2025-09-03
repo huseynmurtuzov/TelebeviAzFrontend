@@ -7,6 +7,7 @@ import { useNotification } from "./context/NotificationContext"
 import {jwtDecode} from 'jwt-decode'
 import { useNavigate } from "react-router-dom"
 import BackArrow from "./BackArrow"
+import imageCompression from 'browser-image-compression'
 import { Helmet } from "react-helmet"
 const CreateListing = () => {
   const [formData, setFormData] = useState({
@@ -163,13 +164,30 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
     }))
   }
 
-  const handlePhotoUpload = (e) => {
-    const files = Array.from(e.target.files)
-    setFormData((prev) => ({
-      ...prev,
-      photos: [...prev.photos, ...files],
-    }))
-  }
+  const handlePhotoUpload = async (e) => {
+  const files = Array.from(e.target.files)
+  const compressedFiles = await Promise.all(
+    files.map(async (file) => {
+      const options = {
+        maxSizeMB: 0.3, 
+        maxWidthOrHeight: 1280, 
+        useWebWorker: true,
+      }
+      try {
+        const compressedFile = await imageCompression(file, options)
+        return compressedFile
+      } catch (error) {
+        console.error('Şəkil sıxışdırma zamanı xəta:', error)
+        return file 
+      }
+    })
+  )
+
+  setFormData((prev) => ({
+    ...prev,
+    photos: [...prev.photos, ...compressedFiles],
+  }))
+}
 
   const removePhoto = (index) => {
     setFormData((prev) => ({
