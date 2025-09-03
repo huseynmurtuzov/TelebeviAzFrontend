@@ -165,6 +165,7 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   }
 
   const handlePhotoUpload = async (e) => {
+    setLoading(true)
   const files = Array.from(e.target.files)
   const compressedFiles = await Promise.all(
     files.map(async (file) => {
@@ -177,8 +178,10 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
         const compressedFile = await imageCompression(file, options)
         return compressedFile
       } catch (error) {
-        console.error('Şəkil sıxışdırma zamanı xəta:', error)
         return file 
+      }
+      finally{
+        setLoading(false)
       }
     })
   )
