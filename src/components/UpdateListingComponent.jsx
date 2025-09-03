@@ -239,14 +239,41 @@ const UpdateListingComponent = () => {
   //   }));
   // };
 
-  const handlePhotoUpload = (e) => {
-    const files = Array.from(e.target.files);
+  const handlePhotoUpload = async (e) => {
+      setLoading(true)
+    const files = Array.from(e.target.files)
+    const compressedFiles = await Promise.all(
+      files.map(async (file) => {
+        const options = {
+          maxSizeMB: 0.3, 
+          maxWidthOrHeight: 1280, 
+          useWebWorker: true,
+        }
+        try {
+          const compressedBlob = await imageCompression(file, options)
+          const originalName = file.name
+          const extension = originalName.split('.').pop()
+          const baseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName
+  
+          const finalFile = new File(
+            [compressedBlob],
+            `${baseName}.${extension}`,
+            { type: compressedBlob.type }
+          )
+          return finalFile
+        } catch (error) {
+          return file 
+        }
+        
+      })
+      
+    )
+  setLoading(false)
     setFormData((prev) => ({
       ...prev,
-      photos: [...prev.photos, ...files],
-    }));
-  };
-
+      photos: [...prev.photos, ...compressedFiles],
+    }))
+  }
   
   const removePhoto = async(photo,index) => {
     setFormData((prev) => ({
