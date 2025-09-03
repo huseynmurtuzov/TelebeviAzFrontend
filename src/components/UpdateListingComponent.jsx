@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import BackArrow from "./BackArrow";
 import { Helmet } from "react-helmet";
 
+
 const locations = [
   "Yeni Yasamal",
   "Nəsimi",
