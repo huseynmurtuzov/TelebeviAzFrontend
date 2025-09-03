@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate, useParams } from "react-router-dom";
 import BackArrow from "./BackArrow";
 import { Helmet } from "react-helmet";
+import imageCompression from 'browser-image-compression'
 
 
 const locations = [
