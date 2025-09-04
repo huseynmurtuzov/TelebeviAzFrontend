@@ -44,6 +44,8 @@ export default function Register() {
       newErrors.name = "Ad yalnız hərflərdən ibarət olmalıdır";
     } else if (formData.name.trim().length < 3) {
       newErrors.name = "Ad ən az 3 hərfdən ibarət olmalıdır";
+    }else if(formData.name.includes("attack")){
+      newErrors.name = "Bir boşluq tapib telebeevi.app instagrama bildirsen komek etmis olarsan"
     }
 
     if (!formData.surname) {
@@ -254,6 +256,7 @@ const sendVerificationCode = async() => {
                 <option value="">İstifadəçi tipi seçin</option>
                 <option value="1">Tələbə</option>
                 <option value="2">Makler</option>
+                <option value="3">Ev Sahibi</option>
               </select>
               {errors.userType && <div className="error">{errors.userType}</div>}
             </div>
@@ -309,7 +312,7 @@ const sendVerificationCode = async() => {
             <div className="summary-item">
               <span className="summary-label">İstifadəçi tipi:</span>
               <span className="summary-value">
-                {formData.userType === "1" ? "Tələbə" : formData.userType === "2" ? "Makler" : ""}
+                {formData.userType === "1" ? "Tələbə" : formData.userType === "2" ? "Makler" : formData.userType === "3" ? "Ev Sahibi" : ""}
               </span>
             </div>
             <div className="summary-item">

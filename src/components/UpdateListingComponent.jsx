@@ -356,7 +356,6 @@ const UpdateListingComponent = () => {
             <p>Məlumatları düzəldib yeniləyə bilərsiniz</p>
           </div>
           <form onSubmit={handleSubmit} className="listing-form">
-            {/* Photo Upload Section */}
             <div className="form-section">
               <h2>Şəkillər</h2>
               <div className="photo-upload-area">
@@ -400,7 +399,6 @@ const UpdateListingComponent = () => {
               {errors.photos && <div className="error">{errors.photos}</div>}
             </div>
 
-            {/* Basic Information */}
             <div className="form-section">
               <h2>Əsas Məlumatlar</h2>
               <div className="form-grid">

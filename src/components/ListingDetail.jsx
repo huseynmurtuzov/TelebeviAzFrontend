@@ -97,7 +97,6 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
     fetchUser()
   },[property])
   
-  
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -324,7 +323,7 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
                 className="owner-avatar"
               />
               <div className="owner-info">
-                <h4 className="owner-name">{userData?.fullName}</h4>
+                <h4 className="owner-name">{userData?.fullName} - {userData?.role == 1 && <span>(Tələbə)</span>} {userData?.role == 2 && <span>(Makler)</span>} {userData?.role == 1 && <span>(Ev Sahibi)</span>}</h4>
                 {/* <div className="owner-rating">
                   <div className="stars">
                     {[1,2,3,4,5].map(star => (
