@@ -66,6 +66,7 @@ export default function Register() {
     }
     if (currentStep === 4) {
       if (!formData.userType) newErrors.userType = "İstifadəçi tipi seçin";
+      if(!formData.userType == 3) newErrors.userType = "Istifadeci tipini duzgun secin!"
       if (!formData.gender) newErrors.gender = "Cins seçin";
       if (!formData.dateOfBirth) newErrors.dateOfBirth = "Doğum tarixi seçin";
     }
@@ -256,7 +257,7 @@ const sendVerificationCode = async() => {
                 <option value="">İstifadəçi tipi seçin</option>
                 <option value="1">Tələbə</option>
                 <option value="2">Makler</option>
-                <option value="3">Ev Sahibi</option>
+                {/* <option value="3">Ev Sahibi</option> */}
               </select>
               {errors.userType && <div className="error">{errors.userType}</div>}
             </div>
