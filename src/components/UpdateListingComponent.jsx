@@ -10,6 +10,62 @@ import BackArrow from "./BackArrow";
 import { Helmet } from "react-helmet";
 import imageCompression from 'browser-image-compression'
 
+const cities = [
+  "Bakı",
+  "Gəncə",
+  "Sumqayıt",
+  "Mingəçevir",
+  "Şəki",
+  "Lənkəran",
+  "Naxçıvan",
+  "Şamaxı",
+  "Şirvan",
+  "Quba",
+  "Qusar",
+  "Xaçmaz",
+  "Zaqatala",
+  "Qazax",
+  "Tovuz",
+  "Salyan",
+  "Biləsuvar",
+  "Sabirabad",
+  "Cəlilabad",
+  "Masallı",
+  "Astara",
+  "Göyçay",
+  "İsmayıllı",
+  "Qəbələ",
+  "Ağcabədi",
+  "Ağdaş",
+  "Füzuli",
+  "Bərdə",
+  "Tərtər",
+  "Kürdəmir",
+  "Zərdab",
+  "Ucar",
+  "Goranboy",
+  "Şəmkir",
+  "Samux",
+  "Göygöl",
+  "Daşkəsən",
+  "Balakən",
+  "Oğuz",
+  "Şabran",
+  "Siyəzən",
+  "Qobustan",
+  "Abşeron",
+  "Hacıqabul",
+  "Ağstafa",
+  "Yevlax",
+  "Naftalan",
+  "Lerik",
+  "Yardımlı",
+  "Sədərək",
+  "Şərur",
+  "Ordubad",
+  "Culfa",
+  "Babək"
+];
 
 const locations = [
   "Yeni Yasamal",
@@ -68,6 +124,15 @@ const UpdateListingComponent = () => {
   const navigate = useNavigate();
   const { id: listingId } = useParams();
   const [errors, setErrors] = useState({})
+  const [showLocationSection, setShowLocationSection] = useState(false)
+
+  useEffect(() => {
+    if(formData.city == "0"){
+      setShowLocationSection(true)
+    }else{
+      setShowLocationSection(false);
+    }
+  },[formData.city])
 
   const validateListing = () => {
   let newErrors = {};
@@ -91,8 +156,6 @@ const UpdateListingComponent = () => {
 
   if (!formData.city) {
     newErrors.city = "Şəhər boş ola bilməz";
-  } else if (formData.city.length > 50) {
-    newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
   }
 
   if (!formData.district) {
@@ -105,8 +168,10 @@ const UpdateListingComponent = () => {
     newErrors.address = "Ünvan boş ola bilməz";
   }
 
-  if (!formData.location) {
-    newErrors.location = "Location boş ola bilməz";
+  if(formData.city == "0"){
+    if (formData.location === "") {
+      newErrors.location = "Location boş ola bilməz";
+    }
   }
 
   if (!formData.roomCount) {
@@ -177,7 +242,7 @@ const UpdateListingComponent = () => {
           title: data.title || "",
           description: data.description || "",
           price: data.price || "",
-          city: data.city || "",
+          city: data.city,
           district: data.district || "",
           address: data.address || "",
           location: data.location ,
@@ -481,6 +546,24 @@ const UpdateListingComponent = () => {
               <h2>Ünvan Məlumatları</h2>
               <div className="form-grid">
                 <div className="form-group">
+                  <label htmlFor="location">Şəhər *</label>
+                  <select
+                    className="location-select"
+                    name="city"
+                    id="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                  >
+                    <option value={null} selected disabled>Seç</option>
+                    {cities.map((city, idx) => (
+                      <option value={idx} key={idx}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.city && <div className="error">{errors.city}</div>}
+                </div>
+                {/* <div className="form-group">
                   <label htmlFor="city">Şəhər *</label>
                   <input
                     type="text"
@@ -493,7 +576,7 @@ const UpdateListingComponent = () => {
                   />
                   {errors.city && <div className="error">{errors.city}</div>}
 
-                </div>
+                </div> */}
                 <div className="form-group">
                   <label htmlFor="district">Rayon *</label>
                   <input
@@ -507,7 +590,7 @@ const UpdateListingComponent = () => {
                   />
                   {errors.district && <div className="error">{errors.district}</div>}
                 </div>
-                <div className="form-group">
+                {showLocationSection && <div className="form-group">
                   <label htmlFor="location">Məkan *</label>
                   <select
                     className="location-select"
@@ -524,7 +607,7 @@ const UpdateListingComponent = () => {
                     ))}
                   </select>
                   {errors.location && <div className="error">{errors.location}</div>}
-                </div>
+                </div>}
                 <div className="form-group full-width">
                   <label htmlFor="address">Tam Ünvan *</label>
                   <input

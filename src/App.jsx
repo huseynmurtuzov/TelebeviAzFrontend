@@ -25,8 +25,8 @@ import ChangePassword from "./components/ChangePassword"
   export default function App() {
     return (
       <div>
-        <p style={{textAlign:'center'}}>Saytda təmir işləri gedir!</p> 
-        {/* <BrowserRouter>
+        {/* <p style={{textAlign:'center'}}>Saytda təmir işləri gedir!</p>  */}
+        <BrowserRouter>
         <NotificationProvider>
           <GlobalStatus/>
         <Routes>
@@ -88,7 +88,7 @@ import ChangePassword from "./components/ChangePassword"
         </Routes>
         </NotificationProvider>
         <AcceptAllCookies />
-        </BrowserRouter> */}
+        </BrowserRouter>
       </div>
     )
   }

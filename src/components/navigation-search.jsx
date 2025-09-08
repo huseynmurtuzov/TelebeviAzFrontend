@@ -40,7 +40,7 @@ export default function NavigationSearch() {
                 <span>
                   <img src={logo} className="logo_itself" alt="" />
                 </span>
-                <span> <span style={{color:"#92C9DD"}}>| Be</span><span style={{color:"#e1d36c"}}>ta</span></span>
+                {/* <span> <span style={{color:"#92C9DD"}}>| Be</span><span style={{color:"#e1d36c"}}>ta</span></span> */}
               </a>
               {/* <div className="nav-links">
                 <a href="/listings" className="nav-link">

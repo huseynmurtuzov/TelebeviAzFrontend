@@ -18,6 +18,7 @@ export default function RentalListings() {
   selectedRooms: null,
   selectedAreas: null,
   priceRange: [0, 2000],
+  selectedCity:null,
   selectedLocation: null,
   amenities: { onlyGirls: false, onlyBoys: false }
 })
@@ -50,6 +51,7 @@ export default function RentalListings() {
         maxPrice:filters.priceRange[1],
         onlyGirls:filters.amenities.onlyGirls,
         onlyBoys:filters.amenities.onlyBoys,
+        city:filters.selectedCity,
         location:filters.selectedLocation,
         page: currentPage, 
         pageSize }

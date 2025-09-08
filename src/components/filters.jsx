@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../assets/styles/filters.css"
 import api from "../api"
 import { useNotification } from "./context/NotificationContext"
@@ -13,8 +13,18 @@ export default function Filters({sendDataToParent}) {
   const [priceRange, setPriceRange] = useState([0, 2000])
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn,setListings,listings,currentPage } = useNotification();
   const [selectedLocation, setSelectedLocation] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
+    const [showLocationSection, setShowLocationSection] = useState(false)
+
     const pageSize = 4
 
+    useEffect(() => {
+    if(selectedCity == "0"){
+      setShowLocationSection(true)
+    }else{
+      setShowLocationSection(false);
+    }
+  },[selectedCity])
   
   const [amenities, setAmenities] = useState({
     onlyGirls: false,
@@ -24,9 +34,66 @@ export default function Filters({sendDataToParent}) {
     selectedRooms:selectedRooms,
     selectedAreas:selectedAreas,
     priceRange:priceRange,
+    selectedCity:selectedCity,
     selectedLocation:selectedLocation,
     amenities:amenities
   }
+  const cities = [
+  "Bakı",
+  "Gəncə",
+  "Sumqayıt",
+  "Mingəçevir",
+  "Şəki",
+  "Lənkəran",
+  "Naxçıvan",
+  "Şamaxı",
+  "Şirvan",
+  "Quba",
+  "Qusar",
+  "Xaçmaz",
+  "Zaqatala",
+  "Qazax",
+  "Tovuz",
+  "Salyan",
+  "Biləsuvar",
+  "Sabirabad",
+  "Cəlilabad",
+  "Masallı",
+  "Astara",
+  "Göyçay",
+  "İsmayıllı",
+  "Qəbələ",
+  "Ağcabədi",
+  "Ağdaş",
+  "Füzuli",
+  "Bərdə",
+  "Tərtər",
+  "Kürdəmir",
+  "Zərdab",
+  "Ucar",
+  "Goranboy",
+  "Şəmkir",
+  "Samux",
+  "Göygöl",
+  "Daşkəsən",
+  "Balakən",
+  "Oğuz",
+  "Şabran",
+  "Siyəzən",
+  "Qobustan",
+  "Abşeron",
+  "Hacıqabul",
+  "Ağstafa",
+  "Yevlax",
+  "Naftalan",
+  "Lerik",
+  "Yardımlı",
+  "Sədərək",
+  "Şərur",
+  "Ordubad",
+  "Culfa",
+  "Babək"
+];
   const locations = [
   "Yeni Yasamal",
   "Nəsimi",
@@ -97,6 +164,7 @@ export default function Filters({sendDataToParent}) {
         maxPrice:priceRange[1],
         onlyGirls:amenities.onlyGirls,
         onlyBoys:amenities.onlyBoys,
+        city:selectedCity,
         location:selectedLocation,
         page:currentPage,
         pageSize
@@ -124,6 +192,7 @@ export default function Filters({sendDataToParent}) {
   const handleFilterDelete = () => {
     setSelectedAreas(null)
     setSelectedLocation("")
+    setSelectedCity("")
     setPriceRange([0,2000])
     setAmenities({onlyBoys:false,onlyGirls:false})
     setSelectedRooms(null)
@@ -138,7 +207,24 @@ export default function Filters({sendDataToParent}) {
          </button>
       </div>
 
-      <div className="filter-section">
+<div className="filter-section">
+        <h3 className="filter-label">Şəhər</h3>
+        <select
+    className="location-select"
+    name="city"
+    id="city"
+    value={selectedCity}
+    onChange={e => setSelectedCity(e.target.value)}
+  >
+    <option value="" disabled>Seç</option>
+    {cities.map((city, idx) => (
+      <option value={idx} key={idx}>
+        {city}
+      </option>
+    ))}
+  </select>
+      </div>
+      {showLocationSection && <div className="filter-section">
         <h3 className="filter-label">Məkan</h3>
         <select
     className="location-select"
@@ -154,7 +240,8 @@ export default function Filters({sendDataToParent}) {
       </option>
     ))}
   </select>
-      </div>
+      </div>}
+      
 
       <div className="filter-section">
         <h3 className="filter-label">Qiymət aralığı</h3>

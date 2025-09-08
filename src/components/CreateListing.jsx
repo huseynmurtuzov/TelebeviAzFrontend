@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../assets/styles/CreateListing.css"
 import api from "../api"
 import { useNotification } from "./context/NotificationContext"
@@ -14,7 +14,7 @@ const CreateListing = () => {
     title: "",
     description: "",
     price: "",
-    city: "",
+    city: 0,
     district: "",
     address: "",
     location: 0,
@@ -24,6 +24,17 @@ const CreateListing = () => {
     photos: [],
   })
   const [errors, setErrors] = useState({})
+  const [showLocationSection, setShowLocationSection] = useState(false)
+  const [selectedLocation, setSelectedLocation] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
+  useEffect(() => {
+    if(selectedCity == "0"){
+      setShowLocationSection(true)
+    }else{
+      setShowLocationSection(false);
+      console.log(selectedLocation)
+    }
+  },[selectedCity])
  const validateListing = () => {
   let newErrors = {};
   if (!formData.title) {
@@ -44,11 +55,9 @@ const CreateListing = () => {
     newErrors.price = "Qiymət 1-dən kiçik ola bilməz";
   }
 
-  if (!formData.city) {
+  if (selectedCity === "") {
     newErrors.city = "Şəhər boş ola bilməz";
-  } else if (formData.city.length > 50) {
-    newErrors.city = "Şəhər adı 50 simvoldan uzun olmamalıdır";
-  }
+  } 
 
   if (!formData.district) {
     newErrors.district = "Rayon boş ola bilməz";
@@ -60,9 +69,11 @@ const CreateListing = () => {
     newErrors.address = "Ünvan boş ola bilməz";
   }
 
-  if (selectedLocation === "") {
-  newErrors.location = "Location boş ola bilməz";
-}
+  if(selectedCity == "0"){
+    if (selectedLocation === "") {
+      newErrors.location = "Location boş ola bilməz";
+    }
+  }
 
   if (!formData.roomCount) {
     newErrors.roomCount = "Otaq sayı boş ola bilməz";
@@ -97,7 +108,62 @@ const CreateListing = () => {
 
 
 
-
+const cities = [
+  "Bakı",
+  "Gəncə",
+  "Sumqayıt",
+  "Mingəçevir",
+  "Şəki",
+  "Lənkəran",
+  "Naxçıvan",
+  "Şamaxı",
+  "Şirvan",
+  "Quba",
+  "Qusar",
+  "Xaçmaz",
+  "Zaqatala",
+  "Qazax",
+  "Tovuz",
+  "Salyan",
+  "Biləsuvar",
+  "Sabirabad",
+  "Cəlilabad",
+  "Masallı",
+  "Astara",
+  "Göyçay",
+  "İsmayıllı",
+  "Qəbələ",
+  "Ağcabədi",
+  "Ağdaş",
+  "Füzuli",
+  "Bərdə",
+  "Tərtər",
+  "Kürdəmir",
+  "Zərdab",
+  "Ucar",
+  "Goranboy",
+  "Şəmkir",
+  "Samux",
+  "Göygöl",
+  "Daşkəsən",
+  "Balakən",
+  "Oğuz",
+  "Şabran",
+  "Siyəzən",
+  "Qobustan",
+  "Abşeron",
+  "Hacıqabul",
+  "Ağstafa",
+  "Yevlax",
+  "Naftalan",
+  "Lerik",
+  "Yardımlı",
+  "Sədərək",
+  "Şərur",
+  "Ordubad",
+  "Culfa",
+  "Babək"
+];
 
    const locations = [
   "Yeni Yasamal",
@@ -137,7 +203,6 @@ const CreateListing = () => {
 ];
 const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
   const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn } = useNotification();
-  const [selectedLocation, setSelectedLocation] = useState("")
   const navigate = useNavigate();
 
   const token = localStorage.getItem("accessToken");
@@ -208,14 +273,20 @@ setLoading(false)
   }
   const handleSubmitFunction = async () => {
   const sendingformData = new FormData();
+  
+  console.log(selectedLocation)
 
   sendingformData.append("title", formData.title);
   sendingformData.append("description", formData.description);
   sendingformData.append("price", parseFloat(formData.price));
-  sendingformData.append("city", formData.city);
+  sendingformData.append("city", selectedCity);
   sendingformData.append("district", formData.district);
   sendingformData.append("address", formData.address);
-  sendingformData.append("location", selectedLocation); 
+  if(selectedCity == "0"){
+    sendingformData.append("location", selectedLocation); 
+  }else{
+    sendingformData.append("location", "0"); 
+  }
   sendingformData.append("roomCount", formData.roomCount);
   sendingformData.append("area", parseInt(formData.area));
   sendingformData.append("userId", parseInt(userId));
@@ -391,6 +462,24 @@ setLoading(false)
             <h2>Ünvan Məlumatları</h2>
             <div className="form-grid">
               <div className="form-group">
+                <label htmlFor="location">Şəhər *</label>
+                <select
+                  className="location-select"
+                  name="city"
+                  id="city"
+                  value={selectedCity}
+                  onChange={e => setSelectedCity(e.target.value)}
+                >
+                  <option value="" disabled>Seç</option>
+                  {cities.map((city, idx) => (
+                    <option value={idx} key={idx}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
+                {errors.city && <div className="error">{errors.city}</div>}
+              </div>
+              {/* <div className="form-group">
                 <label htmlFor="city">Şəhər *</label>
                 <input
                   type="text"
@@ -402,7 +491,7 @@ setLoading(false)
                   required
                 />
                 {errors.city && <div className="error">{errors.city}</div>}
-              </div>
+              </div> */}
 
               <div className="form-group">
                 <label htmlFor="district">Rayon *</label>
@@ -418,24 +507,24 @@ setLoading(false)
                 {errors.district && <div className="error">{errors.district}</div>}
               </div>
 
-              <div className="form-group">
-  <label htmlFor="location">Məkan *</label>
-  <select
-    className="location-select"
-    name="location"
-    id="location"
-    value={selectedLocation}
-    onChange={e => setSelectedLocation(e.target.value)}
-  >
-    <option value="" disabled>Seç</option>
-    {locations.map((location, idx) => (
-      <option value={idx} key={idx}>
-        {location}
-      </option>
-    ))}
-  </select>
-  {errors.location && <div className="error">{errors.location}</div>}
-</div>
+              {showLocationSection && <div className="form-group">
+                <label htmlFor="location">Məkan *</label>
+                <select
+                  className="location-select"
+                  name="location"
+                  id="location"
+                  value={selectedLocation}
+                  onChange={e => setSelectedLocation(e.target.value)}
+                >
+                  <option value="" disabled>Seç</option>
+                  {locations.map((location, idx) => (
+                    <option value={idx} key={idx}>
+                      {location}
+                    </option>
+                  ))}
+                </select>
+                {errors.location && <div className="error">{errors.location}</div>}
+              </div>}
 
               <div className="form-group full-width">
                 <label htmlFor="address">Tam Ünvan *</label>

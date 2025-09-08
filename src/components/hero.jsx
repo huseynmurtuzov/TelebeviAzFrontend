@@ -16,9 +16,8 @@ const Hero = () => {
         <div className="hero-container">
           <h1 className="hero-title">Tələbələr üçün mənzil axtarışı</h1>
           <p className="hero-subtitle">
-            Tələbəsən və Bakıda kirayə ev axtarırsan? Ya da ev tapmısan ama otaq yoldaşı axtarırsan? Tam doğru yerdəsən.
-            Bu platforma daha çox bölgələrdən Bakıya gəlib kirayə ev axtaran tələbələr üçün qurulub və heç bir kar amacı
-            güdmür.
+            Tələbəsən və  kirayə ev axtarırsan? Ya da ev tapmısan ama otaq yoldaşı axtarırsan? Tam doğru yerdəsən.
+            Bu platformada ölkənin hər bir şəhərindən kirayə tələbə evi və ya otaq yoldaşı tapa bilərsən.
           </p>
           {/* <div className="hero-stats">
             <div className="stat-item">

@@ -4,6 +4,62 @@ import api from "../api"
 import { useNotification } from "./context/NotificationContext"
 import { useNavigate } from "react-router-dom"
 
+const cities = [
+  "Bakı",
+  "Gəncə",
+  "Sumqayıt",
+  "Mingəçevir",
+  "Şəki",
+  "Lənkəran",
+  "Naxçıvan",
+  "Şamaxı",
+  "Şirvan",
+  "Quba",
+  "Qusar",
+  "Xaçmaz",
+  "Zaqatala",
+  "Qazax",
+  "Tovuz",
+  "Salyan",
+  "Biləsuvar",
+  "Sabirabad",
+  "Cəlilabad",
+  "Masallı",
+  "Astara",
+  "Göyçay",
+  "İsmayıllı",
+  "Qəbələ",
+  "Ağcabədi",
+  "Ağdaş",
+  "Füzuli",
+  "Bərdə",
+  "Tərtər",
+  "Kürdəmir",
+  "Zərdab",
+  "Ucar",
+  "Goranboy",
+  "Şəmkir",
+  "Samux",
+  "Göygöl",
+  "Daşkəsən",
+  "Balakən",
+  "Oğuz",
+  "Şabran",
+  "Siyəzən",
+  "Qobustan",
+  "Abşeron",
+  "Hacıqabul",
+  "Ağstafa",
+  "Yevlax",
+  "Naftalan",
+  "Lerik",
+  "Yardımlı",
+  "Sədərək",
+  "Şərur",
+  "Ordubad",
+  "Culfa",
+  "Babək"
+];
 export default function PropertyCard({ property }) {
   const { title, bedrooms, bathrooms, sqft, price, image, priceType = "month" } = property
   const [images, setImages] = useState([])
@@ -42,7 +98,7 @@ export default function PropertyCard({ property }) {
         <div className="property-details">
           {/* <span className="detail-item">{property.description}</span> */}
           {/* <span className="detail-separator">•</span> */}
-          <span className="detail-item">{property.city} şəhəri</span>
+          <span className="detail-item">{cities[property.city]} şəhəri</span>
           <span className="detail-separator">•</span>
           <span className="detail-item">Ünvan:{property.address}</span>
         </div>
