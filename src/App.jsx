@@ -25,7 +25,7 @@ import ChangePassword from "./components/ChangePassword"
   export default function App() {
     return (
       <div>
-        <p>Saytda təmir işləri gedir!</p>
+        <p style={{textAlign:'center'}}>Saytda təmir işləri gedir!</p> 
         {/* <BrowserRouter>
         <NotificationProvider>
           <GlobalStatus/>
