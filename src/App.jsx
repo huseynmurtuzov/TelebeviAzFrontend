@@ -17,12 +17,16 @@ import AcceptAllCookies from "./components/AcceptAllCookies"
 import TermsOfUse from "./components/TermsOfUse"
 import UserProfileEdit from "./components/UserProfileEdit"
 import UpdateListingComponent from "./components/UpdateListingComponent"
+import VerifyAccount from "./components/verifyAccount"
+import ForgotPassword from "./components/forgotPassword"
+import ForgotPasswordVerificationCode from "./components/ForgotPasswordVerificationCode"
+import ChangePassword from "./components/ChangePassword"
 
   export default function App() {
     return (
       <div>
-        {/* <p>Saytda təmir işləri gedir!</p> */}
-        <BrowserRouter>
+        <p>Saytda təmir işləri gedir!</p>
+        {/* <BrowserRouter>
         <NotificationProvider>
           <GlobalStatus/>
         <Routes>
@@ -36,6 +40,26 @@ import UpdateListingComponent from "./components/UpdateListingComponent"
           <Route path={"/register"} element={
             <PublicRoute>
               <Register/>
+            </PublicRoute>
+          }/>
+          <Route path={"/forgotPassword"} element={
+            <PublicRoute>
+              <ForgotPassword/>
+            </PublicRoute>
+          }/>
+          <Route path={"/verifyAccount"} element={
+            <PublicRoute>
+              <VerifyAccount/>
+            </PublicRoute>
+          }/>
+          <Route path={"/sendForgotPasswordVerification"} element={
+            <PublicRoute>
+              <ForgotPasswordVerificationCode/>
+            </PublicRoute>
+          }/>
+          <Route path={"/changePassword"} element={
+            <PublicRoute>
+              <ChangePassword/>
             </PublicRoute>
           }/>
           <Route path={"/rent-details/:id"} element={<ListingDetail/>}/>
@@ -64,7 +88,7 @@ import UpdateListingComponent from "./components/UpdateListingComponent"
         </Routes>
         </NotificationProvider>
         <AcceptAllCookies />
-        </BrowserRouter>
+        </BrowserRouter> */}
       </div>
     )
   }
