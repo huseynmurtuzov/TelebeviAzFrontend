@@ -180,7 +180,7 @@ const UpdateListingComponent = () => {
           city: data.city || "",
           district: data.district || "",
           address: data.address || "",
-          location: data.location || "",
+          location: data.location ,
           roomCount: data.roomCount || "",
           onlyFor: Number(data.onlyFor) || "",
           area: data.area || "", 

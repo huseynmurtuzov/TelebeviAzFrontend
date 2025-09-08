@@ -42,13 +42,19 @@ export default function Login() {
     // Handle email login
   }
 
+  
 
   const handleLoginFunction = async (formData) => {
   return await api.post("/Account/login", {
     email:formData.email,
     password:formData.password
   });
-}
+ }
+  const sendVerificationCode = async() => {
+  return await api.post("/Account/verifyEmail", {
+    email:formData.email
+  });}
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -65,6 +71,22 @@ export default function Login() {
     }catch (err) {
       if (err.response && err.response.data) {
         showError(err.response.data.message || "Xəta baş verdi!");
+        if(err.response.data.message.includes("edin")){
+            try {
+              setLoading(true)
+              const response = await sendVerificationCode();
+                if (response.status === 200 || response.status === 204){
+                    showInfo("Mailinzə verifikasiya kodu göndərdik")
+                    navigate('/verifyEmail',{ state: { email: formData.email }})
+                }
+            } catch (error) {
+              if (error.response && error.response.data) {
+                showError(error.response.data.message);
+              }
+            } finally {
+              setLoading(false)
+            }
+        }
       } else {
         showError("Xəta baş verdi!");
       }
@@ -124,9 +146,9 @@ export default function Login() {
               Məni Xatırla
             </label> */}
 
-            {/* <a href="#" className="forgot-password" >
+            <a href="/forgotPassword" className="forgot-password" >
               Şifrəni unutdum
-            </a> */}
+            </a>
           </div>
 
           <button type="submit" className="login-button" onClick={e => handleLogin(e)}>

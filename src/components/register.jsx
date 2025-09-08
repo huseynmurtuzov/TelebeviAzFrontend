@@ -257,7 +257,7 @@ const sendVerificationCode = async() => {
                 <option value="">İstifadəçi tipi seçin</option>
                 <option value="1">Tələbə</option>
                 <option value="2">Makler</option>
-                {/* <option value="3">Ev Sahibi</option> */}
+                <option value="3">Ev Sahibi</option>
               </select>
               {errors.userType && <div className="error">{errors.userType}</div>}
             </div>
@@ -374,6 +374,12 @@ const sendVerificationCode = async() => {
           <span>Artıq hesabınız var? </span>
           <a href="/login" className="login-link-text">
             Giriş edin
+          </a>
+        </div>
+        <div className="login-link" style={{marginTop:"10px"}}>
+          <span>Hesabınızı təsdiq etməlisiniz? </span>
+          <a href="/verifyAccount" className="login-link-text">
+            Hesabınızı təsdiq edin 
           </a>
         </div>
       </div>

@@ -185,6 +185,13 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
               <span>{new Date(property?.createdAt).getUTCDate() + "/" +(new Date(property?.createdAt).getUTCMonth() +1) + "/" +new Date(property?.createdAt).getUTCFullYear()}</span>
               
             </div>
+            <div className="meta-itam" style={{display:'flex',alignItems:"center",gap:"5px"}}>
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                  <path stroke="#059669" strokeWidth="2" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/>
+                  <circle cx="12" cy="12" r="3" stroke="#059669" strokeWidth="2"/>
+                </svg>
+                <span>{property?.listingView + 52}</span>
+            </div>
           </div>
 
           <div className="property-features">
