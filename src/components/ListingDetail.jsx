@@ -190,7 +190,11 @@ const { setLoading, showError, showInfo,isLoading,error,setIsLoggedIn,isLoggedIn
                   <path stroke="#059669" strokeWidth="2" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/>
                   <circle cx="12" cy="12" r="3" stroke="#059669" strokeWidth="2"/>
                 </svg>
+<<<<<<< HEAD
                 <span>{Math.floor((property?.listingView ?? 0) / 2)}</span>
+=======
+                <span>{property?.listingView}</span>
+>>>>>>> 5a87e77e32781d09af62c15ab35c8d74e56b08ea
             </div>
           </div>
 
