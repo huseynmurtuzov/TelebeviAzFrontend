@@ -173,6 +173,7 @@ export default function Filters({sendDataToParent}) {
   }
   const handleFilter = async () => {
     sendDataToParent(filterData)
+    window.scrollTo(0, 0);
     // setLoading(true);
     //   try {
     //     const response = await handleFilterFunction();

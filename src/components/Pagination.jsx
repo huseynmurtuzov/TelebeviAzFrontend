@@ -19,6 +19,7 @@ function Pagination({ currentPage, totalCount, pageSize, onPageChange }) {
   const handlePageClick = (page) => {
     if (typeof page === "number" && page !== currentPage) {
       onPageChange(page);
+       window.scrollTo(0, 0);
     }
   };
 

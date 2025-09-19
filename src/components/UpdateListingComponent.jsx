@@ -133,6 +133,9 @@ const UpdateListingComponent = () => {
       setShowLocationSection(false);
     }
   },[formData.city])
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   const validateListing = () => {
   let newErrors = {};

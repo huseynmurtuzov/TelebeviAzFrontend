@@ -3,7 +3,62 @@ import "../assets/styles/UserListingCard.css";
 import { useNotification } from "./context/NotificationContext";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
-
+const cities = [
+  "Bakı",
+  "Gəncə",
+  "Sumqayıt",
+  "Mingəçevir",
+  "Şəki",
+  "Lənkəran",
+  "Naxçıvan",
+  "Şamaxı",
+  "Şirvan",
+  "Quba",
+  "Qusar",
+  "Xaçmaz",
+  "Zaqatala",
+  "Qazax",
+  "Tovuz",
+  "Salyan",
+  "Biləsuvar",
+  "Sabirabad",
+  "Cəlilabad",
+  "Masallı",
+  "Astara",
+  "Göyçay",
+  "İsmayıllı",
+  "Qəbələ",
+  "Ağcabədi",
+  "Ağdaş",
+  "Füzuli",
+  "Bərdə",
+  "Tərtər",
+  "Kürdəmir",
+  "Zərdab",
+  "Ucar",
+  "Goranboy",
+  "Şəmkir",
+  "Samux",
+  "Göygöl",
+  "Daşkəsən",
+  "Balakən",
+  "Oğuz",
+  "Şabran",
+  "Siyəzən",
+  "Qobustan",
+  "Abşeron",
+  "Hacıqabul",
+  "Ağstafa",
+  "Yevlax",
+  "Naftalan",
+  "Lerik",
+  "Yardımlı",
+  "Sədərək",
+  "Şərur",
+  "Ordubad",
+  "Culfa",
+  "Babək"
+];
 export default function UserListingCard({ listing, onEdit, onDelete }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
@@ -77,7 +132,7 @@ export default function UserListingCard({ listing, onEdit, onDelete }) {
           </div>
         </div>
         <div className="card-sub">
-          <span>{listing.city}, {listing.district}</span>
+          <span>{cities[listing.city]}</span>
           <span>{listing.area} m²</span>
         </div>
         <div className="card-bottom">

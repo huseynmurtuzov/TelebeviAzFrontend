@@ -228,6 +228,9 @@ const genders = ["Kişi", "Qadın", "Fərqi yoxdur"]
       onlyFor: prev.onlyFor.includes(value) ? prev.onlyFor.filter((item) => item !== value) : [...prev.onlyFor, value],
     }))
   }
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   const handlePhotoUpload = async (e) => {
     setLoading(true)
